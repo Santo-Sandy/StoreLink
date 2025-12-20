@@ -1,0 +1,341 @@
+.container {
+  min-height: 100vh;
+  background: whitesmoke;
+  font-family: 'Segoe UI',Arial, sans-serif;
+}
+
+.header-card {
+  background: linear-gradient(135deg, #c671f7, #2d5481);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 45px 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 10px auto 0px;
+  padding: 0 10px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #d096ff;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.product-cards {
+  margin: 20px 20px;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 20px 20px;
+}
+
+.product-title {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  color: #292d33;
+  margin: 0 0 20px 0;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  font-size: 14px;
+}
+
+.product-info{
+  background-color:  #f5f5f5;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #888888;
+}
+
+.product-label {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.product-value {
+  padding: 10px 10px;
+  color: #4c4f53;
+}
+
+.product-priority {
+  color: #ff0505;
+}
+
+
+.main-card {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.stage-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.stage-button {
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #4b5563;
+  transition: all 0.2s;
+}
+
+.stage-button.active {
+  background: #53e9b0;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+.progress-container {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.progress-line-bg {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #e5e7eb;
+}
+
+.progress-line-fill {
+  height: 100%;
+  background: linear-gradient(to right, #10b981, #1d6cff);
+  transition: width 0.5s ease-out;
+}
+
+.stages-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stage-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+.staged{
+  width: 50px;
+  height: 50px;
+}
+
+.icon-circle {
+  position: relative;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.icon-circle.completed {
+  background: #02d898;
+  border: 2px solid #ffffff;
+}
+
+.icon-circle.active {
+  background: #f6a53b;
+  transform: scale(1.1);
+  animation: wait 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes wait {
+  0%, 100% {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(250, 159, 39, 0.397);
+  }
+}
+
+.icon-circle.pending {
+  background: #dbdbdb;
+}
+
+.icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon ::ng-deep svg {
+  width: 20px;
+  height: 20px;
+}
+
+.stage-name {
+  margin-top: 12px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.text-completed {
+  color: #14e2a1;
+}
+
+.text-active {
+  color: #eb8f25;
+}
+
+.text-pending {
+  color: #9ca3af;
+}
+
+.locations {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.location {
+  font-size: 12px;
+}
+
+.location-active {
+  color: #12161b;
+}
+
+.location-pending {
+  color: #9ca3af;
+}
+
+.status-badge {
+  margin-top: 10px;
+  padding: 5px 12px;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.details-card {
+  background: linear-gradient(to right, #eff6ff, #eef2ff);
+  border-radius: 10px;
+  padding: 25px;
+  border: 1px solid #bfdbfe;
+}
+
+.details-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #252a30;
+  margin: 0 0 10px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 20px;
+  padding-left: 30px;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.stat-pending {
+  color: #eb7e25;
+}
+
+.stat-green {
+  color: #059669;
+}
+
+.stat-gray {
+  color: #6b6b6b;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .header-card {
+    padding: 24px;
+  }
+
+  .main-card {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .stage-node {
+    width: auto;
+    min-width: 80px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
