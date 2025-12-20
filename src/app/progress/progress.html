@@ -1,118 +1,116 @@
 <div class="container">
-    <div class="header-card">
-        <h1 class="title">Supplier to Store Tracking</h1>
-        <p class="subtitle">List of tracks on.</p>
+  <div class="header-card">
+    <h1 class="title">Tracking Suppliers to Stores </h1>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Search hub by name or city"
+        [(ngModel)]="searchText"
+      />
     </div>
+  </div>
   <div class="wrapper">
-    <div class="main-card">
-      <div class="stage-controls">
-        <button
-          *ngFor="let stage of stages"
-          (click)="setCurrentStage(stage.id)"
-          [class.active]="currentStage === stage.id"
-          class="stage-button"
-        >
-          {{ stage.name }}
-        </button>
-      </div>
-
-      <div class="progress-container">
-        <div class="progress-line-bg">
-          <div class="progress-line-fill" [style.width.%]="getProgressPercentage()"></div>
-        </div>
-
-        <div class="stages-wrapper">
-          <div *ngFor="let stage of stages" class="stage-node">
-            <div
-              class="icon-circle"
-              [ngClass]="{
-                completed: getStageStatus(stage.id) === 'completed',
-                active: getStageStatus(stage.id) === 'active',
-                pending: getStageStatus(stage.id) === 'pending'
-              }"
-            >
-              <span
-                *ngIf="getStageStatus(stage.id) === 'completed'"
-                class="icon"
-                [innerHTML]="getIconSvg('check')"
-              ></span>
-              <span
-                *ngIf="getStageStatus(stage.id) !== 'completed'"
-                class="icon"
-                [innerHTML]="getIconSvg(stage.icon)"
-              ></span>
-            </div>
-
-            <div
-              class="stage-name"
-              [ngClass]="{
-                'text-completed': getStageStatus(stage.id) === 'completed',
-                'text-active': getStageStatus(stage.id) === 'active',
-                'text-pending': getStageStatus(stage.id) === 'pending'
-              }"
-            >
-              {{ stage.name }}
-            </div>
-
-            <div class="locations">
-              <div
-                *ngFor="let location of stage.locations"
-                class="location"
-                [ngClass]="{
-                  'location-active':
-                    getStageStatus(stage.id) === 'completed' ||
-                    getStageStatus(stage.id) === 'active',
-                  'location-pending': getStageStatus(stage.id) === 'pending'
-                }"
-              >
-                {{ location }}
-              </div>
-            </div>
-
-            <div *ngIf="getStageStatus(stage.id) === 'active'" class="status-badge">In Transit</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="details-card">
-        <h3 class="details-title">Current Status</h3>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-label">Current Stage</div>
-            <div class="stat-value stat-blue">{{ getCurrentStageName() }}</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Progress</div>
-            <div class="stat-value stat-green">{{ getProgressPercentage() }}%</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Stages Completed</div>
-            <div class="stat-value stat-gray">{{ getCompletedStages() }} / {{ stages.length }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <h3 class="product-title">Product Information</h3>
+    <div class="product-cards" *ngFor="let product of products;let i=index"> 
+      <h3 class="product-title">{{product.name}}</h3>
       <div class="product-grid">
-        <div>
+        <div class="product-info">
           <span class="product-label">Product ID:</span>
-          <div class="product-value">PRD-2024-001</div>
+          <div class="product-value">{{product.productId}}</div>
         </div>
-        <div>
+        <div class="product-info">
           <span class="product-label">Quantity:</span>
           <div class="product-value">1,500 units</div>
         </div>
-        <div>
+        <div class="product-info">
           <span class="product-label">Est. Delivery:</span>
           <div class="product-value">Dec 25, 2025</div>
         </div>
-        <div>
+        <div class="product-info">
           <span class="product-label">Priority:</span>
           <div class="product-value product-priority">High</div>
         </div>
       </div>
-    </div>
+      <div class="main-card">
+        <div class="stage-controls">
+          <button
+            *ngFor="let stage of product.stages"
+            (click)="setCurrentStage(stage.id,i)"
+            [class.active]="products[i].currentStage === stage.id"
+            class="stage-button"
+          >
+            {{ stage.name }}
+          </button>
+        </div>
+        <div class="progress-container">
+          <div class="progress-line-bg">
+            <div class="progress-line-fill" [style.width.%]="getProgressPercentage(i)"></div>
+          </div>
+          <div class="stages-wrapper">
+            <div *ngFor="let stage of product.stages" class="stage-node">
+              <div class="staged">
+                <div
+                class="icon-circle"
+                [ngClass]="{
+                  completed: getStageStatus(stage.id,i) === 'completed',
+                  active: getStageStatus(stage.id,i) === 'active',
+                  pending: getStageStatus(stage.id,i) === 'pending'
+                }">
+                <span
+                  *ngIf="getStageStatus(stage.id,i) === 'completed'"
+                  class="icon"
+                  ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+                <span
+                  *ngIf="getStageStatus(stage.id,i) !== 'completed'"
+                  class="icon"
+                  [innerHTML]="getIconSvg(stage.icon)">{{getIconSvg(stage.icon)}}</span>
+              </div>
+              </div>
+              <div
+                class="stage-name"
+                [ngClass]="{
+                  'text-completed': getStageStatus(stage.id,i) === 'completed',
+                  'text-active': getStageStatus(stage.id,i) === 'active',
+                  'text-pending': getStageStatus(stage.id,i) === 'pending'
+                }">
+                {{ stage.name }}
+              </div>
+
+              <div class="locations">
+                <div
+                  *ngFor="let location of stage.locations"
+                  class="location"
+                  [ngClass]="{
+                    'location-active':
+                      getStageStatus(stage.id,i) === 'completed' ||
+                      getStageStatus(stage.id,i) === 'active',
+                    'location-pending': getStageStatus(stage.id,i) === 'pending'
+                  }">
+                  {{ location }}
+                </div>
+              </div>
+
+              <div *ngIf="getStageStatus(stage.id,i) === 'active'" class="status-badge">In Transit</div>
+            </div>
+          </div>
+        </div>
+        <div class="details-card">
+          <h3 class="details-title">Current Status</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Current Stage</div>
+              <div class="stat-value stat-pending">{{getCurrentStageName(i)}}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Progress</div>
+              <div class="stat-value stat-green">{{ getProgressPercentage(i) }}%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Stages Completed</div>
+              <div class="stat-value stat-gray">{{ getCompletedStages(i) }} / {{ product.stages.length }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
   </div>
 </div>
