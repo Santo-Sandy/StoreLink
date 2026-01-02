@@ -9,6 +9,11 @@ export const serverRoutes: ServerRoute[] = [
     renderMode:RenderMode.Client,
   },
   {
+    
+    path:'store-details/:id',
+    renderMode:RenderMode.Client,
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }
