@@ -1,13 +1,18 @@
 <div class="intro-card">
         <div >
-        <h2>{{place.name}}<sup>&nbsp;
-            <span
+        <h2>{{place?.name || place?.storeData.name}}<sup>&nbsp;
+            <span *ngIf="place.priority"
             class="status"
             [class.medium]="place.priority==='Medium'||place.status==='Active'"
             [class.high]="place.priority==='High'||place.status==='Inactive'"
             [class.low]="place.priority==='Low'|| place.priority==='Medium-low'"
             [class.normal]="place.priority==='Normal'"
             >{{place.priority}}{{place.status}}</span>
+            <span *ngIf="place.storeData"
+                class="status"
+                [class.medium]="place.storeData.status==='Active'"
+                [class.high]="place.storeData.status==='Inactive'"
+                >{{place.storeData.status}}</span>
         </sup></h2>
         @if (place.priority) {
             <div class="intro-info">
@@ -15,13 +20,24 @@
                 <p>Quantity: {{place.quantity}}</p>
                 <p>Estimated Delivery: {{place.estimatedDelivery}}</p>
             </div>
-        }
-        @if(place.city){
-            <div class="intro-info">
-                <p>{{place.city}}, {{place.state}}</p>
+        }@else {
+            <div class="intro-location" *ngIf="place.city">
+                {{place.city}}, {{place.state}}
             </div>
-            
+            <div class="intro-location" *ngIf="place.storeData.location">
+                {{place.storeData.location}}
+            </div>
+        
+        }@if(place.storeData){
+            <div class="intro-info">
+                <p>Id: {{place.storeData.id}}</p>
+                <p>Manager: {{place.storeData.manager}}</p>
+                <p>Current Stock: {{place.storeData.currentStock}}</p>
+                <p>Capacity: {{place.storeData.capacity}}</p>
+            </div>
         }
+            
+        
     </div>
     <button class="view-btn" (click)="view()">View details >>></button>            
 </div>

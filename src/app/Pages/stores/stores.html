@@ -13,63 +13,10 @@
   </div>
   </div>
 
-  
-
   <div class="store-grid">
-
-    <div
-      class="store-card"
-      *ngFor="let store of filteredStores()"
-    >
-      <h2>{{ store.name }}</h2>
-
-      <p class="store-location">
-        {{ store.city }}, {{ store.state }}
-      </p>
-
-      <div class="store-details">
-        <div>
-          <span class="label">Manager</span>
-          <span>{{ store.manager }}</span>
-        </div>
-
-        <div>
-          <span class="label">Contact</span>
-          <span>{{ store.phone }}</span>
-        </div>
-
-        <div>
-          <span class="label">Status</span>
-          <span
-            class="status"
-            [class.active]="store.status === 'Active'"
-            [class.inactive]="store.status === 'Inactive'"
-          >
-            {{ store.status }}
-          </span>
-        </div>
-      </div>
-
-      <div class="linked-section">
-        <h3>Linked Stores</h3>
-        <ul>
-          <li *ngFor="let hub of store.hubs">
-            {{ hub.name }} – {{ hub.city }}
-          </li>
-        </ul>
-      </div>
-
-      <div class="linked-section">
-        <h3>Linked Depots</h3>
-        <ul>
-          <li *ngFor="let depot of store.depots">
-            {{ depot.name }} – {{ depot.city }}
-          </li>
-        </ul>
-      </div>
-
-      <button class="view-btn">View Details</button>
+    <div class="Stores"
+      *ngFor="let store of filteredStores(); let i=index">
+    <app-intro-card [place]="store"></app-intro-card>
     </div>
-
   </div>
 </div>

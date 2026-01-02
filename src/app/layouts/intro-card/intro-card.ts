@@ -1,10 +1,10 @@
-import { Component, inject, Input, input } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { ProgressData } from '../../Services/progress-data';
+import { CommonModule } from '@angular/common';
+import { Component, inject, Input} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intro-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './intro-card.html',
   styleUrl: './intro-card.css',
 })
@@ -19,6 +19,9 @@ export class IntroCard {
   view(){
     if(this.place.productId){
       this.route.navigate(['trackproduct',this.place.productId]);
+    }
+    if(this.place.storeData){
+      this.route.navigate(['store-details',this.place?.storeData?.name])
     }
   }
 

@@ -56,7 +56,12 @@ export const routes: Routes = [
     {
         path:'trackproduct/:id',
         loadComponent:()=>import('./Pages/progress/trackproduct/trackproduct').then(m=>m.Trackproduct),
-        title:'Progress-Title',
+        title:'Progress-track',
+    },
+    {
+        path:'store-details/:id',
+        loadComponent:()=>import('./Pages/stores/store-details/store-details').then(m=>m.StoreDetails),
+        title:'Store'
     },
     {
         path:'**',
