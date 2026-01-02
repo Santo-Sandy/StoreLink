@@ -1,7 +1,7 @@
 <div class="intro-card">
         <div >
         <h2>{{place?.name || place?.storeData.name}}<sup>&nbsp;
-            <span *ngIf="place.priority"
+            <span *ngIf="place?.priority||place.status"
             class="status"
             [class.medium]="place.priority==='Medium'||place.status==='Active'"
             [class.high]="place.priority==='High'||place.status==='Inactive'"
@@ -21,12 +21,16 @@
                 <p>Estimated Delivery: {{place.estimatedDelivery}}</p>
             </div>
         }@else {
-            <div class="intro-location" *ngIf="place.city">
+            @if (place.city) {
+                <div class="intro-location">
                 {{place.city}}, {{place.state}}
             </div>
-            <div class="intro-location" *ngIf="place.storeData.location">
+            }@else {
+                <div class="intro-location" *ngIf="place.storeData.location">
                 {{place.storeData.location}}
             </div>
+
+            }
         
         }@if(place.storeData){
             <div class="intro-info">

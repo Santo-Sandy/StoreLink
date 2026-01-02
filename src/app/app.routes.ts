@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './Pages/home/home';
-import { About } from './Pages/about/about';
+import { About } from './Pages/settings/about/about';
 import { Settings } from './Pages/settings/settings';
 import { Stores } from './Pages/stores/stores';
 import { Suppliers } from './Pages/suppliers/suppliers';
@@ -22,6 +22,11 @@ export const routes: Routes = [
         path:'about',
         component: About,
         title:'About',
+    },
+    {
+        path:'routes',
+        loadComponent:()=>import ('./Pages/routes/routes').then(m=>m.Routes),
+        title:'Routes',
     },
     {
         path:'settings',
