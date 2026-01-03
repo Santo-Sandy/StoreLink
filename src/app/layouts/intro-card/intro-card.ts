@@ -23,8 +23,8 @@ export class IntroCard {
     if(this.place.storeData){
       this.route.navigate(['store-details',this.place?.storeData?.name]);
     }
-    if(this.place.city){
-      this.route.navigate(['supplier']);
+    if(this.place.supplier){
+      this.route.navigate(['supplier',this.place?.supplier?.name]);
     }
   }
 

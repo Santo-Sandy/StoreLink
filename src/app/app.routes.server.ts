@@ -14,6 +14,11 @@ export const serverRoutes: ServerRoute[] = [
     renderMode:RenderMode.Client,
   },
   {
+    
+    path:'supplier/:id',
+    renderMode:RenderMode.Client,
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }

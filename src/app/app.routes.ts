@@ -25,7 +25,7 @@ export const routes: Routes = [
         title:'About',
     },
     {
-        path:'supplier',
+        path:'supplier/:id',
         component: Supplier,
         title:'Supplier',
     }

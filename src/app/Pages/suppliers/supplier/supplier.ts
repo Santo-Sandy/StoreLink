@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SuppliersData } from '../../../Services/suppliers-data';
+import { ActivatedRoute } from '@angular/router';
 
 interface Suppliers {
   id: string;
   name: string;
   location: string;
+  status:string;
   contact: string;
   email: string;
   capacity: string;
   currentProduction: number;
-  rating: number;
   established: string;
 }
 
@@ -62,210 +64,46 @@ interface MonthlyProductionRecord {
   templateUrl: './supplier.html',
   styleUrl: './supplier.css',
 })
-export class Supplier {
+export class Supplier  {
 
-  supplier: Suppliers = {
-    id: 'SUP-001',
-    name: 'Global Electronics Supplier Ltd.',
-    location: 'Shanghai, China',
-    contact: '+86 21 1234 5678',
-    email: 'contact@globalsupplier.com',
-    capacity: '100,000 units/month',
-    currentProduction: 78500,
-    rating: 4.8,
-    established: '2010'
-  };
+  private q=inject(ActivatedRoute);
 
-  products: Product[] = [
-    {
-      id: 'PRD-001',
-      name: 'Premium Laptop',
-      category: 'Electronics',
-      sku: 'LAP-PRE-001',
-      description: 'High-performance laptop with latest processor',
-      unitPrice: 1299.99,
-      productionCapacity: 5000,
-      currentStock: 3450,
-      monthlyProduction: 4850
-    },
-    {
-      id: 'PRD-002',
-      name: 'Wireless Mouse',
-      category: 'Accessories',
-      sku: 'ACC-MOU-002',
-      description: 'Ergonomic wireless mouse',
-      unitPrice: 29.99,
-      productionCapacity: 15000,
-      currentStock: 12300,
-      monthlyProduction: 14200
-    },
-    {
-      id: 'PRD-003',
-      name: 'USB-C Cable',
-      category: 'Accessories',
-      sku: 'ACC-CAB-003',
-      description: 'Fast charging USB-C cable',
-      unitPrice: 15.99,
-      productionCapacity: 20000,
-      currentStock: 18700,
-      monthlyProduction: 19500
-    },
-    {
-      id: 'PRD-004',
-      name: 'Mechanical Keyboard',
-      category: 'Accessories',
-      sku: 'ACC-KEY-004',
-      description: 'RGB mechanical keyboard',
-      unitPrice: 89.99,
-      productionCapacity: 8000,
-      currentStock: 6200,
-      monthlyProduction: 7500
-    },
-    {
-      id: 'PRD-005',
-      name: '27" Monitor',
-      category: 'Electronics',
-      sku: 'MON-27-005',
-      description: '4K display with HDR',
-      unitPrice: 349.99,
-      productionCapacity: 3000,
-      currentStock: 2150,
-      monthlyProduction: 2800
-    },
-    {
-      id: 'PRD-006',
-      name: 'Webcam HD',
-      category: 'Electronics',
-      sku: 'WEB-HD-006',
-      description: '1080p webcam',
-      unitPrice: 59.99,
-      productionCapacity: 10000,
-      currentStock: 8900,
-      monthlyProduction: 9600
-    }
-  ];
+  id!:string;
+  suppliers;
+  supplierindividual;
+  supplier;
+  products;
+  hubs;
+  distributions;
+  productionRecords;
 
-  hubs: Hub[] = [
-    {
-      id: 'HUB-001',
-      name: 'Asia Pacific Distribution Hub',
-      location: 'Singapore',
-      distance: '4,200 km',
-      capacity: 500000
-    },
-    {
-      id: 'HUB-002',
-      name: 'Central Logistics Hub',
-      location: 'Hong Kong',
-      distance: '3,800 km',
-      capacity: 400000
-    },
-    {
-      id: 'HUB-003',
-      name: 'Southeast Regional Hub',
-      location: 'Bangkok, Thailand',
-      distance: '3,500 km',
-      capacity: 350000
-    }
-  ];
-
-  distributions: ProductDistribution[] = [
-    {
-      id: 'DIST-001',
-      productId: 'PRD-001',
-      productName: 'Premium Laptop',
-      hubId: 'HUB-001',
-      hubName: 'Asia Pacific Distribution Hub',
-      quantitySent: 1200,
-      date: '2025-01-02',
-      status: 'delivered'
-    },
-    {
-      id: 'DIST-002',
-      productId: 'PRD-002',
-      productName: 'Wireless Mouse',
-      hubId: 'HUB-001',
-      hubName: 'Asia Pacific Distribution Hub',
-      quantitySent: 3500,
-      date: '2025-01-02',
-      status: 'in-transit'
-    },
-    {
-      id: 'DIST-003',
-      productId: 'PRD-003',
-      productName: 'USB-C Cable',
-      hubId: 'HUB-002',
-      hubName: 'Central Logistics Hub',
-      quantitySent: 5000,
-      date: '2025-01-01',
-      status: 'delivered'
-    },
-    {
-      id: 'DIST-004',
-      productId: 'PRD-004',
-      productName: 'Mechanical Keyboard',
-      hubId: 'HUB-003',
-      hubName: 'Southeast Regional Hub',
-      quantitySent: 800,
-      date: '2025-01-02',
-      status: 'pending'
-    }
-  ];
-
-  productionRecords: MonthlyProductionRecord[] = [
-    {
-      month: 'December',
-      year: 2024,
-      productId: 'PRD-001',
-      productName: 'Premium Laptop',
-      produced: 4850,
-      distributed: 4200,
-      remaining: 650
-    },
-    {
-      month: 'December',
-      year: 2024,
-      productId: 'PRD-002',
-      productName: 'Wireless Mouse',
-      produced: 14200,
-      distributed: 13500,
-      remaining: 700
-    },
-    {
-      month: 'December',
-      year: 2024,
-      productId: 'PRD-003',
-      productName: 'USB-C Cable',
-      produced: 19500,
-      distributed: 18800,
-      remaining: 700
-    },
-    {
-      month: 'November',
-      year: 2024,
-      productId: 'PRD-001',
-      productName: 'Premium Laptop',
-      produced: 4700,
-      distributed: 4500,
-      remaining: 200
-    },
-    {
-      month: 'November',
-      year: 2024,
-      productId: 'PRD-002',
-      productName: 'Wireless Mouse',
-      produced: 13800,
-      distributed: 13200,
-      remaining: 600
-    }
-  ];
+  constructor(private suppliersData:SuppliersData){
+    this.suppliers=this.suppliersData.set();
+    this.supplierindividual=this.suppliers[0];
+    this.supplier=this.supplierindividual.supplier;
+    this.products=this.supplierindividual.products;
+    this.hubs=this.supplierindividual.hubs;
+    this.distributions=this.supplierindividual.distributions;
+    this.productionRecords=this.supplierindividual.productionRecords;
+  }
 
   selectedProduct: Product | null = null;
   selectedView: 'products' | 'distributions' | 'production' = 'products';
   selectedMonth: string = 'December';
   selectedYear: number = 2024;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.q.paramMap.subscribe((value:any)=>{
+      var param=value.params;
+      this.id=param.id??'';
+      this.supplierindividual=this.suppliers.filter((supplier:any)=>supplier.supplier.name==this.id)[0];
+      this.supplier=this.supplierindividual.supplier;
+      this.products=this.supplierindividual.products;
+      this.hubs=this.supplierindividual.hubs;
+      this.distributions=this.supplierindividual.distributions;
+      this.productionRecords=this.supplierindividual.productionRecords;
+    })
+  }
 
   selectProduct(product: Product): void {
     this.selectedProduct = product;
@@ -308,7 +146,7 @@ export class Supplier {
   }
 
   getDistributionsByHub(hubId: string): ProductDistribution[] {
-    return this.distributions.filter(d => d.hubId === hubId);
+    return this.distributions.filter(d => d.hubId === hubId) as ProductDistribution[];
   }
 
   getFilteredProductionRecords(): MonthlyProductionRecord[] {
@@ -327,6 +165,6 @@ export class Supplier {
   }
 
   getProductDistributions(productId: string): ProductDistribution[] {
-    return this.distributions.filter(d => d.productId === productId);
+    return this.distributions.filter(d => d.productId === productId) as ProductDistribution[];
   }
 }
