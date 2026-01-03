@@ -1,320 +1,320 @@
 <!-- supplier-view.component.html -->
 <div class="supplier-container">
-  <!-- Supplier Header -->
-  <div class="supplier-header">
+<!-- Supplier Header -->
+<div class="supplier-header">
     <div class="header-content">
-      <div class="supplier-logo">
+    <div class="supplier-logo">
         <svg class="logo-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
         </svg>
-      </div>
-      <div class="supplier-info">
+    </div>
+    <div class="supplier-info">
         <h1 class="supplier-name">{{ supplier.name }}</h1>
         <p class="supplier-id">{{ supplier.id }}</p>
         <div class="supplier-meta">
-          <span class="meta-item">{{ supplier.location }}</span>
-          <span class="meta-item">{{ supplier.email }}</span>
-          <span class="meta-item">Est. {{ supplier.established }}</span>
+        <span class="meta-item">{{ supplier.location }}</span>
+        <span class="meta-item">{{ supplier.email }}</span>
+        <span class="meta-item">Est. {{ supplier.established }}</span>
         </div>
-      </div>
-      <div class="supplier-rating">
+    </div>
+    <div class="supplier-rating">
         <div class="rating-value">{{ supplier.rating }}</div>
         <div class="rating-stars">★★★★★</div>
         <div class="rating-label">Supplier Rating</div>
-      </div>
     </div>
-  </div>
+    </div>
+</div>
 
-  <!-- Statistics Cards -->
-  <div class="stats-grid">
+<!-- Statistics Cards -->
+<div class="stats-grid">
     <div class="stat-card production">
-      <div class="stat-icon">📊</div>
-      <div class="stat-content">
+    <div class="stat-icon">📊</div>
+    <div class="stat-content">
         <div class="stat-value">{{ getTotalMonthlyProduction().toLocaleString() }}</div>
         <div class="stat-label">Monthly Production</div>
-      </div>
+    </div>
     </div>
 
     <div class="stat-card stock">
-      <div class="stat-icon">📦</div>
-      <div class="stat-content">
+    <div class="stat-icon">📦</div>
+    <div class="stat-content">
         <div class="stat-value">{{ getTotalCurrentStock().toLocaleString() }}</div>
         <div class="stat-label">Current Stock</div>
-      </div>
+    </div>
     </div>
 
     <div class="stat-card products">
-      <div class="stat-icon">🏷️</div>
-      <div class="stat-content">
+    <div class="stat-icon">🏷️</div>
+    <div class="stat-content">
         <div class="stat-value">{{ products.length }}</div>
         <div class="stat-label">Total Products</div>
-      </div>
+    </div>
     </div>
 
     <div class="stat-card hubs">
-      <div class="stat-icon">🏭</div>
-      <div class="stat-content">
+    <div class="stat-icon">🏭</div>
+    <div class="stat-content">
         <div class="stat-value">{{ hubs.length }}</div>
         <div class="stat-label">Connected Hubs</div>
-      </div>
     </div>
-  </div>
+    </div>
+</div>
 
-  <!-- View Selector -->
-  <div class="view-selector">
+<!-- View Selector -->
+<div class="view-selector">
     <button 
-      class="view-tab"
-      [class.active]="selectedView === 'products'"
-      (click)="selectedView = 'products'"
+    class="view-tab"
+    [class.active]="selectedView === 'products'"
+    (click)="selectedView = 'products'"
     >
-      📦 Products
+    📦 Products
     </button>
     <button 
-      class="view-tab"
-      [class.active]="selectedView === 'distributions'"
-      (click)="selectedView = 'distributions'"
+    class="view-tab"
+    [class.active]="selectedView === 'distributions'"
+    (click)="selectedView = 'distributions'"
     >
-      🚚 Distributions
+    🚚 Distributions
     </button>
     <button 
-      class="view-tab"
-      [class.active]="selectedView === 'production'"
-      (click)="selectedView = 'production'"
+    class="view-tab"
+    [class.active]="selectedView === 'production'"
+    (click)="selectedView = 'production'"
     >
-      📊 Monthly Production
+    📊 Monthly Production
     </button>
-  </div>
+</div>
 
-  <!-- Products View -->
-  <div class="products-section" *ngIf="selectedView === 'products'">
+<!-- Products View -->
+<div class="products-section" *ngIf="selectedView === 'products'">
     <h2 class="section-title">Product Catalog</h2>
     <div class="products-grid">
-      <div 
+    <div 
         *ngFor="let product of products"
         class="product-card"
         (click)="selectProduct(product)"
-      >
+    >
         <div class="product-header">
-          <h3 class="product-name">{{ product.name }}</h3>
-          <span class="product-category">{{ product.category }}</span>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <span class="product-category">{{ product.category }}</span>
         </div>
         <div class="product-sku">SKU: {{ product.sku }}</div>
         <div class="product-price">${{ product.unitPrice.toFixed(2) }}</div>
         
         <div class="product-stats">
-          <div class="product-stat">
+        <div class="product-stat">
             <span class="stat-label-small">Current Stock</span>
             <span class="stat-value-small">{{ product.currentStock.toLocaleString() }}</span>
-          </div>
-          <div class="product-stat">
+        </div>
+        <div class="product-stat">
             <span class="stat-label-small">Monthly Output</span>
             <span class="stat-value-small">{{ product.monthlyProduction.toLocaleString() }}</span>
-          </div>
+        </div>
         </div>
 
         <div class="production-bar">
-          <div class="production-fill" 
-               [style.width.%]="getProductionPercentage(product.monthlyProduction, product.productionCapacity)">
-          </div>
+        <div class="production-fill" 
+            [style.width.%]="getProductionPercentage(product.monthlyProduction, product.productionCapacity)">
+        </div>
         </div>
         <div class="production-label">
-          {{ getProductionPercentage(product.monthlyProduction, product.productionCapacity).toFixed(1) }}% Capacity
+        {{ getProductionPercentage(product.monthlyProduction, product.productionCapacity).toFixed(1) }}% Capacity
         </div>
-      </div>
     </div>
-  </div>
+    </div>
+</div>
 
-  <!-- Distributions View -->
-  <div class="distributions-section" *ngIf="selectedView === 'distributions'">
+<!-- Distributions View -->
+<div class="distributions-section" *ngIf="selectedView === 'distributions'">
     <div class="section-header">
-      <h2 class="section-title">Product Distributions to Hubs</h2>
-      <div class="distribution-summary">
+    <h2 class="section-title">Product Distributions to Hubs</h2>
+    <div class="distribution-summary">
         <span class="summary-item pending">⏳ Pending: {{ getDistributionStatus().pending }}</span>
         <span class="summary-item transit">🚚 In Transit: {{ getDistributionStatus().transit }}</span>
         <span class="summary-item delivered">✅ Delivered: {{ getDistributionStatus().delivered }}</span>
-      </div>
+    </div>
     </div>
 
     <div class="distributions-table">
-      <table>
+    <table>
         <thead>
-          <tr>
+        <tr>
             <th>Distribution ID</th>
             <th>Product</th>
             <th>Destination Hub</th>
             <th>Quantity</th>
             <th>Date</th>
             <th>Status</th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let dist of distributions">
+        <tr *ngFor="let dist of distributions">
             <td class="dist-id">{{ dist.id }}</td>
             <td class="dist-product">{{ dist.productName }}</td>
             <td class="dist-hub">
-              <div class="hub-name-cell">{{ dist.hubName }}</div>
-              <div class="hub-location-cell">{{ getHubLocation(dist.hubId) }}</div>
+            <div class="hub-name-cell">{{ dist.hubName }}</div>
+            <div class="hub-location-cell">{{ getHubLocation(dist.hubId) }}</div>
             </td>
             <td class="dist-quantity">{{ dist.quantitySent.toLocaleString() }} units</td>
             <td class="dist-date">{{ dist.date }}</td>
             <td>
-              <span class="status-badge" [ngClass]="getStatusClass(dist.status)">
+            <span class="status-badge" [ngClass]="getStatusClass(dist.status)">
                 {{ dist.status }}
-              </span>
+            </span>
             </td>
-          </tr>
+        </tr>
         </tbody>
-      </table>
+    </table>
     </div>
 
     <!-- Hubs Overview -->
     <h3 class="subsection-title">Connected Distribution Hubs</h3>
     <div class="hubs-grid">
-      <div *ngFor="let hub of hubs" class="hub-card">
+    <div *ngFor="let hub of hubs" class="hub-card">
         <h4 class="hub-name">{{ hub.name }}</h4>
         <div class="hub-details">
-          <div class="hub-detail">📍 {{ hub.location }}</div>
-          <div class="hub-detail">📏 Distance: {{ hub.distance }}</div>
-          <div class="hub-detail">📦 Capacity: {{ hub.capacity.toLocaleString() }}</div>
+        <div class="hub-detail">📍 {{ hub.location }}</div>
+        <div class="hub-detail">📏 Distance: {{ hub.distance }}</div>
+        <div class="hub-detail">📦 Capacity: {{ hub.capacity.toLocaleString() }}</div>
         </div>
         <div class="hub-stats">
-          <span class="hub-stat">
+        <span class="hub-stat">
             Distributions: {{ getDistributionsByHub(hub.id).length }}
-          </span>
+        </span>
         </div>
-      </div>
     </div>
-  </div>
+    </div>
+</div>
 
-  <!-- Monthly Production View -->
-  <div class="production-section" *ngIf="selectedView === 'production'">
+<!-- Monthly Production View -->
+<div class="production-section" *ngIf="selectedView === 'production'">
     <div class="section-header">
-      <h2 class="section-title">Monthly Production Records</h2>
-      <div class="date-selector">
+    <h2 class="section-title">Monthly Production Records</h2>
+    <div class="date-selector">
         <select [(ngModel)]="selectedMonth" name="month" class="month-select">
-          <option *ngFor="let month of getMonths()" [value]="month">{{ month }}</option>
+        <option *ngFor="let month of getMonths()" [value]="month">{{ month }}</option>
         </select>
         <select [(ngModel)]="selectedYear" name="year" class="year-select">
-          <option *ngFor="let year of getYears()" [value]="year">{{ year }}</option>
+        <option *ngFor="let year of getYears()" [value]="year">{{ year }}</option>
         </select>
-      </div>
+    </div>
     </div>
 
     <div class="production-records">
-      <div *ngFor="let record of getFilteredProductionRecords()" class="production-record">
+    <div *ngFor="let record of getFilteredProductionRecords()" class="production-record">
         <div class="record-header">
-          <h4 class="record-product">{{ record.productName }}</h4>
-          <span class="record-month">{{ record.month }} {{ record.year }}</span>
+        <h4 class="record-product">{{ record.productName }}</h4>
+        <span class="record-month">{{ record.month }} {{ record.year }}</span>
         </div>
         <div class="record-stats">
-          <div class="record-stat">
+        <div class="record-stat">
             <div class="record-stat-label">Produced</div>
             <div class="record-stat-value produced">{{ record.produced.toLocaleString() }}</div>
-          </div>
-          <div class="record-stat">
+        </div>
+        <div class="record-stat">
             <div class="record-stat-label">Distributed</div>
             <div class="record-stat-value distributed">{{ record.distributed.toLocaleString() }}</div>
-          </div>
-          <div class="record-stat">
+        </div>
+        <div class="record-stat">
             <div class="record-stat-label">Remaining</div>
             <div class="record-stat-value remaining">{{ record.remaining.toLocaleString() }}</div>
-          </div>
+        </div>
         </div>
         <div class="record-bar">
-          <div class="bar-segment produced" 
-               [style.width.%]="(record.produced / (record.produced + record.remaining)) * 100"
-               title="Produced: {{ record.produced }}">
-          </div>
-          <div class="bar-segment distributed" 
-               [style.width.%]="(record.distributed / record.produced) * 100"
-               title="Distributed: {{ record.distributed }}">
-          </div>
+        <div class="bar-segment produced" 
+            [style.width.%]="(record.produced / (record.produced + record.remaining)) * 100"
+            title="Produced: {{ record.produced }}">
+        </div>
+        <div class="bar-segment distributed" 
+            [style.width.%]="(record.distributed / record.produced) * 100"
+            title="Distributed: {{ record.distributed }}">
+        </div>
         </div>
         <div class="record-percentage">
-          Distribution Rate: {{ ((record.distributed / record.produced) * 100).toFixed(1) }}%
+        Distribution Rate: {{ ((record.distributed / record.produced) * 100).toFixed(1) }}%
         </div>
-      </div>
-
-      <div *ngIf="getFilteredProductionRecords().length === 0" class="no-records">
-        <p>No production records found for {{ selectedMonth }} {{ selectedYear }}</p>
-      </div>
     </div>
-  </div>
 
-  <!-- Product Detail Modal -->
-  <div *ngIf="selectedProduct" class="modal-overlay" (click)="closeProductModal()">
+    <div *ngIf="getFilteredProductionRecords().length === 0" class="no-records">
+        <p>No production records found for {{ selectedMonth }} {{ selectedYear }}</p>
+    </div>
+    </div>
+</div>
+
+<!-- Product Detail Modal -->
+<div *ngIf="selectedProduct" class="modal-overlay" (click)="closeProductModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
-      <div class="modal-header">
+    <div class="modal-header">
         <h3 class="modal-title">{{ selectedProduct.name }}</h3>
         <button class="modal-close" (click)="closeProductModal()">×</button>
-      </div>
-      
-      <div class="modal-body">
+    </div>
+    
+    <div class="modal-body">
         <div class="modal-section">
-          <h4>Product Information</h4>
-          <div class="modal-grid">
+        <h4>Product Information</h4>
+        <div class="modal-grid">
             <div class="modal-item">
-              <span class="modal-label">Product ID:</span>
-              <span class="modal-value">{{ selectedProduct.id }}</span>
+            <span class="modal-label">Product ID:</span>
+            <span class="modal-value">{{ selectedProduct.id }}</span>
             </div>
             <div class="modal-item">
-              <span class="modal-label">SKU:</span>
-              <span class="modal-value">{{ selectedProduct.sku }}</span>
+            <span class="modal-label">SKU:</span>
+            <span class="modal-value">{{ selectedProduct.sku }}</span>
             </div>
             <div class="modal-item">
-              <span class="modal-label">Category:</span>
-              <span class="modal-value">{{ selectedProduct.category }}</span>
+            <span class="modal-label">Category:</span>
+            <span class="modal-value">{{ selectedProduct.category }}</span>
             </div>
             <div class="modal-item">
-              <span class="modal-label">Unit Price:</span>
-              <span class="modal-value">${{ selectedProduct.unitPrice.toFixed(2) }}</span>
+            <span class="modal-label">Unit Price:</span>
+            <span class="modal-value">${{ selectedProduct.unitPrice.toFixed(2) }}</span>
             </div>
-          </div>
-          <p class="modal-description">{{ selectedProduct.description }}</p>
+        </div>
+        <p class="modal-description">{{ selectedProduct.description }}</p>
         </div>
 
         <div class="modal-section">
-          <h4>Production Details</h4>
-          <div class="modal-grid">
+        <h4>Production Details</h4>
+        <div class="modal-grid">
             <div class="modal-item">
-              <span class="modal-label">Current Stock:</span>
-              <span class="modal-value">{{ selectedProduct.currentStock.toLocaleString() }} units</span>
+            <span class="modal-label">Current Stock:</span>
+            <span class="modal-value">{{ selectedProduct.currentStock.toLocaleString() }} units</span>
             </div>
             <div class="modal-item">
-              <span class="modal-label">Monthly Production:</span>
-              <span class="modal-value">{{ selectedProduct.monthlyProduction.toLocaleString() }} units</span>
+            <span class="modal-label">Monthly Production:</span>
+            <span class="modal-value">{{ selectedProduct.monthlyProduction.toLocaleString() }} units</span>
             </div>
             <div class="modal-item">
-              <span class="modal-label">Production Capacity:</span>
-              <span class="modal-value">{{ selectedProduct.productionCapacity.toLocaleString() }} units</span>
+            <span class="modal-label">Production Capacity:</span>
+            <span class="modal-value">{{ selectedProduct.productionCapacity.toLocaleString() }} units</span>
             </div>
             <div class="modal-item">
-              <span class="modal-label">Capacity Usage:</span>
-              <span class="modal-value">
+            <span class="modal-label">Capacity Usage:</span>
+            <span class="modal-value">
                 {{ getProductionPercentage(selectedProduct.monthlyProduction, selectedProduct.productionCapacity).toFixed(1) }}%
-              </span>
+            </span>
             </div>
-          </div>
+        </div>
         </div>
 
         <div class="modal-section">
-          <h4>Recent Distributions</h4>
-          <div class="modal-distributions">
+        <h4>Recent Distributions</h4>
+        <div class="modal-distributions">
             <div *ngFor="let dist of getProductDistributions(selectedProduct.id)" class="modal-dist">
-              <div class="modal-dist-info">
+            <div class="modal-dist-info">
                 <span class="modal-dist-hub">{{ dist.hubName }}</span>
                 <span class="modal-dist-qty">{{ dist.quantitySent.toLocaleString() }} units</span>
-              </div>
-              <span class="status-badge-small" [ngClass]="getStatusClass(dist.status)">
+            </div>
+            <span class="status-badge-small" [ngClass]="getStatusClass(dist.status)">
                 {{ dist.status }}
-              </span>
+            </span>
             </div>
             <div *ngIf="getProductDistributions(selectedProduct.id).length === 0" class="no-distributions">
-              No distributions yet for this product
+            No distributions yet for this product
             </div>
-          </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
+    </div>
+</div>
 </div>
