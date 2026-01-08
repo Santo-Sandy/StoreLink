@@ -69,14 +69,14 @@
     height: 60%;
     max-height: 50px;
     padding: 10px;
-    background-color:  #2d54a8;
+    background-color:  #57b495;
     border: none;
     border-radius: 6px;
     justify-self: end;
     align-self: center;
     color: white;
     font-size: 16px;
-    font-weight: 600px;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
@@ -85,6 +85,7 @@
 
 .view-btn:hover{
     background: white;
-    border: 1px solid #2d54a8;
-    color: #2d54a8;
+    border: 1px solid #57b495;
+    font-weight: bold;
+    color: #57b495;
 }

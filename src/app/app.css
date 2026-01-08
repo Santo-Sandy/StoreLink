@@ -3,31 +3,33 @@ body{
   font-family: Arial, sans-serif;
 }
 
-.header {
+.store-header{
+  height: 60px;
+  width: 100%;
+  background: rgb(56, 99, 155);
+  border-bottom: 1px solid white;
+}
+
+.Store-name{
+  color: white;
+  text-align: center;
+  padding: 20px 0px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.nav-left {  
   height: 60px;
   width: 100%;
   background: rgb(56, 99, 155);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0px 12px 20px 1px rgba(255, 255, 255, 0.2);
-}
-
-.nav-left {
-  display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
 }
 
-.title{
-  color: white;
-  margin-right: 20px;
-  font-size: 32px;
-  padding-left: 10px;
-  justify-self: start;
-  font-weight: bold;}
 
 .nav-left a {
   color: #fff;
@@ -48,6 +50,8 @@ body{
   display: block;
   font-weight: bold;
   color: #bbbbbb;
+  background: white;
+  border-radius:12px ;
 }
 
 .header-icon{
@@ -301,7 +305,7 @@ body{
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 725px) {
   .header-name{
     display: none;
     position: absolute;
@@ -323,7 +327,7 @@ body{
 
 }
 
-@media (min-width: 900px) and (max-width: 1100px) {
+@media (min-width: 726px) and (max-width: 1020px) {
   .header-icon{
     display: none;
   }
@@ -332,9 +336,19 @@ body{
   .header-name{
     display: block;
   }
+
+  .nav-left a:hover {
+  color: #bbbbbb;
+  transform: translateY(-5px);
+
+  .header-icon{
+    color: #bbbbbb;
+  }
+
+}
 }
 
-@media(min-width:1100px){
+@media(min-width:1020px){
   .nav-left a:hover {
   color: #bbbbbb;
   transform: translateY(-5px);
