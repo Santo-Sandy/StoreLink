@@ -6,19 +6,19 @@
 }
 
 /* Container Styles */
-.store-container {
+.store-container-s {
   min-height: 100vh;
   background-color: #f9fafb;
   padding: 24px;
 }
 
-.content-wrapper {
+.content-wrapper-s {
   max-width: 1280px;
   margin: 0 auto;
 }
 
 /* Card Styles */
-.card {
+.card-s {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -26,12 +26,12 @@
   margin-bottom: 24px;
 }
 
-.header-card {
+.header-card-s {
   margin-bottom: 24px;
 }
 
 /* Header Styles */
-.header-top {
+.header-top-s {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,84 +40,84 @@
   gap: 16px;
 }
 
-.header-title-section {
+.header-title-section-s {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.main-title {
+.main-title-s {
   font-size: 30px;
   font-weight: bold;
   color: #111827;
   margin: 0;
 }
 
-.subtitle {
+.subtitle-s {
   color: #6b7280;
   margin: 4px 0 0 0;
   font-size: 14px;
 }
 
 /* Icon Styles */
-.icon-large {
+.icon-large-s {
   width: 32px;
   height: 32px;
 }
 
-.icon-medium {
+.icon-medium-s {
   width: 24px;
   height: 24px;
 }
 
-.icon-small {
+.icon-small-s {
   width: 20px;
   height: 20px;
 }
 
-.icon-tiny {
+.icon-tiny-s {
   width: 16px;
   height: 16px;
 }
 
-.icon-primary {
+.icon-primary-s {
   color: #2563eb;
 }
 
 /* Badge Styles */
-.badge {
+.badge-s {
   padding: 8px 16px;
   border-radius: 9999px;
   font-weight: 600;
   font-size: 14px;
 }
 
-.badge-success {
+.badge-success-s {
   background-color: #d1fae5;
   color: #065f46;
 }
 
 /* Info Grid */
-.info-grid {
+.info-grid-s {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-top: 24px;
 }
 
-.info-card {
+.info-card-s {
   background-color: #f9fafb;
   padding: 16px;
   border-radius: 8px;
 }
 
-.info-label {
+.info-label-s {
   font-size: 14px;
   color: #6b7280;
   margin: 0 0 4px 0;
 }
 
-.info-value {
+.info-value-s {
   font-weight: 600;
   color: #111827;
   margin: 0;
@@ -125,7 +125,7 @@
 }
 
 /* Section Title */
-.section-title {
+.section-title-s {
   font-size: 20px;
   font-weight: bold;
   color: #111827;

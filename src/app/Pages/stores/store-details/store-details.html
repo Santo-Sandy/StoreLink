@@ -1,128 +1,128 @@
-<div class="store-container">
-    <div class="content-wrapper">
+<div class="store-container-s">
+    <div class="content-wrapper-s">
     
-    <div class="card header-card">
-        <div class="header-top">
-            <div class="header-title-section">
+    <div class="card-s header-card-s">
+        <div class="header-top-s">
+            <div class="header-title-section-s">
             <div>
-            <h1 class="main-title">{{ storeData.name }}</h1>
-            <p class="subtitle">{{ storeData.id }}</p>
+            <h1 class="main-title-s">{{ storeData.name }}</h1>
+            <p class="subtitle-s">{{ storeData.id }}</p>
         </div>
         </div>
-        <span class="badge badge-success">{{ storeData.status }}</span>
+        <span class="badge-s badge-success-s">{{ storeData.status }}</span>
     </div>
-    <div class="info-grid">
-        <div class="info-card">
-            <p class="info-label">Location</p>
-            <p class="info-value">{{ storeData.location }}</p>
+    <div class="info-grid-s">
+        <div class="info-card-s">
+            <p class="info-label-s">Location</p>
+            <p class="info-value-s">{{ storeData.location }}</p>
         </div>
-        <div class="info-card">
-            <p class="info-label">Manager</p>
-            <p class="info-value">{{ storeData.manager }}</p>
+        <div class="info-card-s">
+            <p class="info-label-s">Manager</p>
+            <p class="info-value-s">{{ storeData.manager }}</p>
         </div>
-        <div class="info-card">
-            <p class="info-label">Contact</p>
-            <p class="info-value">{{ storeData.contact }}</p>
+        <div class="info-card-s">
+            <p class="info-label-s">Contact</p>
+            <p class="info-value-s">{{ storeData.contact }}</p>
         </div>
-        <div class="info-card">
-            <p class="info-label">Capacity</p>
-            <p class="info-value">{{ storeData.capacity }}</p>
+        <div class="info-card-s">
+            <p class="info-label-s">Capacity</p>
+            <p class="info-value-s">{{ storeData.capacity }}</p>
         </div>
     </div>
 </div>
 
-    <div class="card">
-      <h2 class="section-title">
+    <div class="card-s">
+      <h2 class="section-title-s">
         Supply Chain Route
       </h2>
       
-      <div class="chain-container">
-        <div class="chain-node">
-          <div class="chain-card supplier-card">
-            <div class="chain-header">
-              <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="chain-container-s">
+        <div class="chain-node-s">
+          <div class="chain-card-s supplier-card-s">
+            <div class="chain-header-s">
+              <svg class="icon-small-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
               </svg>
               <h3>Supplier</h3>
             </div>
-            <p class="chain-name">{{ supplyChain.supplier.name }}</p>
-            <p class="chain-detail">{{ supplyChain.supplier.id }}</p>
-            <p class="chain-detail">{{ supplyChain.supplier.location }}</p>
-            <p class="chain-detail">{{ supplyChain.supplier.contact }}</p>
+            <p class="chain-name-s">{{ supplyChain.supplier.name }}</p>
+            <p class="chain-detail-s">{{ supplyChain.supplier.id }}</p>
+            <p class="chain-detail-s">{{ supplyChain.supplier.location }}</p>
+            <p class="chain-detail-s">{{ supplyChain.supplier.contact }}</p>
           </div>
         </div>
 
-        <svg class="chain-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="chain-arrow-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
 
-        <div class="chain-node">
-          <div class="chain-cards hub-cards">
-            <div class="chain-header">
-              <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="chain-node-s">
+          <div class="chain-card-s hub-card-s">
+            <div class="chain-header-s">
+              <svg class="icon-small-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
               </svg>
               <h3>Hub</h3>
             </div>
-            <p class="chain-name">{{ supplyChain.hub.name }}</p>
-            <p class="chain-detail">{{ supplyChain.hub.id }}</p>
-            <p class="chain-detail">{{ supplyChain.hub.location }}</p>
-            <p class="chain-detail">{{ supplyChain.hub.contact }}</p>
+            <p class="chain-name-s">{{ supplyChain.hub.name }}</p>
+            <p class="chain-detail-s">{{ supplyChain.hub.id }}</p>
+            <p class="chain-detail-s">{{ supplyChain.hub.location }}</p>
+            <p class="chain-detail-s">{{ supplyChain.hub.contact }}</p>
           </div>
         </div>
 
-        <svg class="chain-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="chain-arrow-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
 
-        <div class="chain-node">
-          <div class="chain-card depot-card">
-            <div class="chain-header">
-              <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="chain-node-s">
+          <div class="chain-card-s depot-card-s">
+            <div class="chain-header-s">
+              <svg class="icon-small-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
               </svg>
               <h3>Depot</h3>
             </div>
-            <p class="chain-name">{{ supplyChain.depot.name }}</p>
-            <p class="chain-detail">{{ supplyChain.depot.id }}</p>
-            <p class="chain-detail">{{ supplyChain.depot.location }}</p>
-            <p class="chain-detail">{{ supplyChain.depot.contact }}</p>
+            <p class="chain-name-s">{{ supplyChain.depot.name }}</p>
+            <p class="chain-detail-s">{{ supplyChain.depot.id }}</p>
+            <p class="chain-detail-s">{{ supplyChain.depot.location }}</p>
+            <p class="chain-detail-s">{{ supplyChain.depot.contact }}</p>
           </div>
         </div>
 
-        <svg class="chain-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="chain-arrow-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
 
-        <div class="chain-node">
-          <div class="chain-card store-card">
-            <div class="chain-header">
-              <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="chain-node-s">
+          <div class="chain-card-s store-card-s">
+            <div class="chain-header-s">
+              <svg class="icon-small-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
               </svg>
               <h3>Store</h3>
             </div>
-            <p class="chain-name">{{ storeData.name }}</p>
-            <p class="chain-detail">{{ storeData.id }}</p>
-            <p class="chain-detail">{{ storeData.location }}</p>
-            <p class="chain-distance destination">Final Destination</p>
+            <p class="chain-name-s">{{ storeData.name }}</p>
+            <p class="chain-detail-s">{{ storeData.id }}</p>
+            <p class="chain-detail-s">{{ storeData.location }}</p>
+            <p class="chain-distance-s destination-s">Final Destination</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="inventory-header">
-        <h2 class="section-title">
+    <div class="card-s">
+      <div class="inventory-header-s">
+        <h2 class="section-title-s">
           Current Inventory
         </h2>
-        <div class="total-stock">
-          Total Stock: <span class="stock-number">{{ storeData.currentStock }} units</span>
+        <div class="total-stock-s">
+          Total Stock: <span class="stock-number-s">{{ storeData.currentStock }} units</span>
         </div>
       </div>
 
-      <div class="table-container">
-        <table class="inventory-table">
+      <div class="table-container-s">
+        <table class="inventory-table-s">
           <thead>
             <tr>
               <th>Product</th>
@@ -138,36 +138,36 @@
           <tbody>
             <tr *ngFor="let product of currentProducts" (click)="selectProduct(product)">
               <td>
-                <p class="product-name">{{ product.name }}</p>
-                <p class="product-id">{{ product.id }}</p>
+                <p class="product-name-s">{{ product.name }}</p>
+                <p class="product-id-s">{{ product.id }}</p>
               </td>
               <td>{{ product.sku }}</td>
               <td>{{ product.category }}</td>
               <td>
-                <span class="quantity-value">{{ product.quantity }}</span>
-                <span class="quantity-max"> / {{ product.maxStock }}</span>
+                <span class="quantity-value-s">{{ product.quantity }}</span>
+                <span class="quantity-max-s"> / {{ product.maxStock }}</span>
               </td>
               <td>
-                <div class="progress-bar">
+                <div class="progress-bar-s">
                   <div 
-                    class="progress-fill"
+                    class="progress-fill-s"
                     [ngClass]="getStockLevelClass(product.quantity, product.maxStock)"
                     [style.width.%]="getStockPercentage(product.quantity, product.maxStock)"
                   ></div>
                 </div>
-                <p class="min-stock">Min: {{ product.minStock }}</p>
+                <p class="min-stock-s">Min: {{ product.minStock }}</p>
               </td>
-              <td class="price-cell">{{ product.price }}</td>
+              <td class="price-cell-s">{{ product.price }}</td>
               <td>
-                <div class="date-cell">
-                  <svg class="icon-tiny" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="date-cell-s">
+                  <svg class="icon-tiny-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                   </svg>
                   {{ product.lastRestocked }}
                 </div>
               </td>
               <td>
-                <span class="status-badge" [ngClass]="getStatusColor(product.status)">
+                <span class="status-badge-s" [ngClass]="getStatusColor(product.status)">
                   {{ product.status }}
                 </span>
               </td>
@@ -176,67 +176,67 @@
         </table>
       </div>
 
-      <div class="alert-box">
-        <svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="alert-box-s">
+        <svg class="alert-icon-s" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
         </svg>
         <div>
-          <h3 class="alert-title">Low Stock Alert</h3>
-          <p class="alert-message">
+          <h3 class="alert-title-s">Low Stock Alert</h3>
+          <p class="alert-message-s">
             {{ getLowStockCount() }} product(s) are below minimum stock level and need restocking.
           </p>
         </div>
       </div>
     </div>
 
-    <div *ngIf="selectedProduct" class="modal-overlay" (click)="closeModal()">
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <div class="modal-header">
-          <h3 class="modal-title">{{ selectedProduct.name }}</h3>
-          <button class="modal-close" (click)="closeModal()">×</button>
+    <div *ngIf="selectedProduct" class="modal-overlay-s" (click)="closeModal()">
+      <div class="modal-content-s" (click)="$event.stopPropagation()">
+        <div class="modal-header-s">
+          <h3 class="modal-title-s">{{ selectedProduct.name }}</h3>
+          <button class="modal-close-s" (click)="closeModal()">×</button>
         </div>
         
-        <div class="modal-grid">
-          <div class="modal-item">
-            <p class="modal-label">Product ID</p>
-            <p class="modal-value">{{ selectedProduct.id }}</p>
+        <div class="modal-grid-s">
+          <div class="modal-item-s">
+            <p class="modal-label-s">Product ID</p>
+            <p class="modal-value-s">{{ selectedProduct.id }}</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">SKU</p>
-            <p class="modal-value">{{ selectedProduct.sku }}</p>
+          <div class="modal-item-s">
+            <p class="modal-label-s">SKU</p>
+            <p class="modal-value-s">{{ selectedProduct.sku }}</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">Category</p>
-            <p class="modal-value">{{ selectedProduct.category }}</p>
+          <div class="modal-item-s">
+            <p class="modal-label-s">Category</p>
+            <p class="modal-value-s">{{ selectedProduct.category }}</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">Price</p>
-            <p class="modal-value">{{ selectedProduct.price }}</p>
+          <div class="modal-item-s">
+            <p class="modal-label-s">Price</p>
+            <p class="modal-value-s">{{ selectedProduct.price }}</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">Current Quantity</p>
-            <p class="modal-value">{{ selectedProduct.quantity }} units</p>
+          <div class="modal-item-s">
+            <p class="modal-label-s">Current Quantity</p>
+            <p class="modal-value-s">{{ selectedProduct.quantity }} units</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">Stock Range</p>
-            <p class="modal-value">{{ selectedProduct.minStock }} - {{ selectedProduct.maxStock }} units</p>
+          <div class="modal-item-s">
+            <p class="modal-label-s">Stock Range</p>
+            <p class="modal-value-s">{{ selectedProduct.minStock }} - {{ selectedProduct.maxStock }} units</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">Last Restocked</p>
-            <p class="modal-value">{{ selectedProduct.lastRestocked }}</p>
+          <div class="modal-item-s">
+            <p class="modal-label-s">Last Restocked</p>
+            <p class="modal-value-s">{{ selectedProduct.lastRestocked }}</p>
           </div>
-          <div class="modal-item">
-            <p class="modal-label">Status</p>
-            <span class="status-badge" [ngClass]="getStatusColor(selectedProduct.status)">
+          <div class="modal-item-s">
+            <p class="modal-label-s">Status</p>
+            <span class="status-badge-s" [ngClass]="getStatusColor(selectedProduct.status)">
               {{ selectedProduct.status }}
             </span>
           </div>
         </div>
 
-        <div class="modal-source">
-          <h4 class="source-title">Supply Chain Source</h4>
-          <p class="source-text">Supplier ID: {{ selectedProduct.supplier }}</p>
-          <p class="source-text">
+        <div class="modal-source-s">
+          <h4 class="source-title-s">Supply Chain Source</h4>
+          <p class="source-text-s">Supplier ID: {{ selectedProduct.supplier }}</p>
+          <p class="source-text-s">
             Route: {{ supplyChain.supplier.name }} → {{ supplyChain.hub.name }} → {{ supplyChain.depot.name }} → {{ storeData.name }}
           </p>
         </div>

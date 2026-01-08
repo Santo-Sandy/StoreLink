@@ -68,10 +68,10 @@ export class StoreDetails {
 
   getStatusColor(status: string): string {
     switch(status) {
-      case 'In Stock': return 'status-in-stock';
-      case 'Low Stock': return 'status-low-stock';
-      case 'Out of Stock': return 'status-out-stock';
-      default: return 'status-default';
+      case 'In Stock': return 'status-in-stock-s';
+      case 'Low Stock': return 'status-low-stock-s';
+      case 'Out of Stock': return 'status-out-stock-s';
+      default: return 'status-default-s';
     }
   }
 
@@ -81,9 +81,9 @@ export class StoreDetails {
 
   getStockLevelClass(current: number, max: number): string {
     const percentage = this.getStockPercentage(current, max);
-    if (percentage > 50) return 'stock-high';
-    if (percentage > 25) return 'stock-medium';
-    return 'stock-low';
+    if (percentage > 50) return 'stock-high-s';
+    if (percentage > 25) return 'stock-medium-s';
+    return 'stock-low-s';
   }
 
   getLowStockCount(): number {
