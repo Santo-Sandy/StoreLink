@@ -6,7 +6,7 @@ body{
 .header {
   height: 60px;
   width: 100%;
-  background: #5b63ad;
+  background: linear-gradient(135deg, #2b3953 0%, #5f99ff 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,7 +24,7 @@ body{
 .title{
   color: white;
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 32px;
   padding-left: 10px;
   justify-self: start;
   font-weight: bold;}
@@ -45,6 +45,7 @@ body{
 
 
 .nav-left a:active {
+  display: block;
   font-weight: bold;
   color: #bbbbbb;
 }
