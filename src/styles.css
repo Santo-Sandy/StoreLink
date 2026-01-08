@@ -1230,9 +1230,9 @@ gap: 12px;
 }
 
 .select-dark {
-appearance: none;
 -webkit-appearance: none;
 -moz-appearance: none;
+appearance: none;
 padding: 14px 45px 14px 18px;
 font-size: 15px;
 font-weight: 600;
