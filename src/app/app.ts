@@ -3,16 +3,23 @@ import {  Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { MatIconModule, MatIcon } from '@angular/material/icon'
+import { Home } from './starts/home/home';
 
+interface FooterSection {
+  title: string;
+  links: string[];
+}
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, MatIcon],
+  imports: [RouterOutlet, RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, MatIcon, Home],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('sample');
+
+  session=signal(false);
   
 
   commentForm: FormGroup;
@@ -34,6 +41,11 @@ export class App {
       message: ['', Validators.required]
     });
   }
+
+    footerSections: FooterSection[] = [
+    { title: 'Product', links: ['Features', 'Pricing', 'Security'] },
+    { title: 'Company', links: ['About', 'Careers', 'Contact'] }
+  ];
 
   onSubmit() {
     if (this.commentForm.valid) {

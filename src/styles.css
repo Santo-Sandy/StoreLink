@@ -5,6 +5,12 @@
   font-family: Arial, sans-serif;
 }
 
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: #22d3ee;
+}
+
 /* store-details css */
 
 .chain-container-s {

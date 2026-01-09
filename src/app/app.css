@@ -10,6 +10,13 @@ body{
   border-bottom: 1px solid white;
 }
 
+.icon-logo{
+  position: absolute;
+  top: 10px;
+  
+  left: 10px;
+}
+
 .Store-name{
   color: white;
   text-align: center;
@@ -340,7 +347,6 @@ body{
   .nav-left a:hover {
   color: #bbbbbb;
   transform: translateY(-5px);
-
   .header-icon{
     color: #bbbbbb;
   }
@@ -349,12 +355,15 @@ body{
 }
 
 @media(min-width:1020px){
+
   .nav-left a:hover {
   color: #bbbbbb;
+  font-size: 20px;
   transform: translateY(-5px);
 
   .header-icon{
-    color: #bbbbbb;
+    color: #777777;
+    
   }
 
 }

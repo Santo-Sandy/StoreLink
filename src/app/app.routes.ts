@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Home } from './Pages/home/home';
+import { Home } from './starts/home/home';
 import { About } from './Pages/settings/about/about';
 import { Settings } from './Pages/settings/settings';
 import { Stores } from './Pages/stores/stores';
@@ -8,16 +8,18 @@ import { Hubs } from './Pages/hubs/hubs';
 import { Depos } from './Pages/depos/depos';
 import { Progress } from './Pages/progress/progress';
 import { Supplier } from './Pages/suppliers/supplier/supplier';
+import { Dashboard } from './Pages/dashboard/dashboard';
 
 export const routes: Routes = [
-    {
-        path:'',
-        component: Home,
-    },
     {
         path:'home',
         component: Home,
         title:'Home',
+    },
+    {
+        path:'dashboard',
+        component:Dashboard,
+        title:'Dashboard',
     },
     {
         path:'about',
@@ -77,6 +79,6 @@ export const routes: Routes = [
     },
     {
         path:'**',
-        redirectTo:'home',
+        redirectTo:'dashboard',
     }
 ];
