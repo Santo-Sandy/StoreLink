@@ -9,10 +9,11 @@ import { Depos } from './Pages/depos/depos';
 import { Progress } from './Pages/progress/progress';
 import { Supplier } from './Pages/suppliers/supplier/supplier';
 import { Dashboard } from './Pages/dashboard/dashboard';
+import { LoginRegister } from './starts/login-register/login-register';
 
 export const routes: Routes = [
     {
-        path:'home',
+        path:'',
         component: Home,
         title:'Home',
     },
@@ -20,6 +21,11 @@ export const routes: Routes = [
         path:'dashboard',
         component:Dashboard,
         title:'Dashboard',
+    },
+    {
+        path:'login-register/:id',
+        component:LoginRegister,
+        title:'Login/Register',
     },
     {
         path:'about',

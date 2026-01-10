@@ -106,12 +106,12 @@ export class Home {
     });
   }
 
-    openLogin() {
-      LoginRegister.prototype.Login();
+  openLogin(login:string='login') {
+      this.route.navigate(['login-register',login]);
   }
 
-  openRegister() {
-    LoginRegister.prototype.Register();
+  openRegister(register:string='register') {
+    this.route.navigate(['login-register',register]);
   }
 
   demo(){

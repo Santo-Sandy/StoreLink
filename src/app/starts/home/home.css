@@ -374,6 +374,137 @@
     color: #0f172a;
 }
 
+/* Stats Section Styles */
+.stats-sectionh {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0857b2 0%, #56ffff 100%);
+}
+
+.stats-containerh {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.stat-itemh {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-itemh:hover {
+    transform: scale(1.1);
+}
+
+.stat-valueh {
+    font-size: 50px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom:14px;
+}
+
+.stat-labelh {
+    font-size: 18px;
+    color: #eefeff;
+}
+
+/* Features Section Styles */
+.features-sectionh {
+    padding: 6rem 0;
+    background: #0f172a;
+}
+
+.features-containerh {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section-headerh {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-titleh {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.section-descriptionh {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.features-gridh {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.feature-cardh {
+    background: rgba(30, 41, 59, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #334155;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.feature-cardh.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature-cardh:hover {
+    border-color: #22d3ee;
+    box-shadow: 0 20px 40px rgba(34, 211, 238, 0.2);
+    transform: translateY(-8px);
+}
+
+.feature-iconh {
+    background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-cardh:hover .feature-iconh {
+    transform: scale(1.1);
+}
+
+.feature-iconh .iconh {
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.feature-titleh {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.feature-descriptionh {
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+
 
 /* Solutions Section Styles */
 .solutions-section {
