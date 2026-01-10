@@ -76,9 +76,5 @@ export const routes: Routes = [
         path:'store-details/:id',
         loadComponent:()=>import('./Pages/stores/store-details/store-details').then(m=>m.StoreDetails),
         title:'Store'
-    },
-    {
-        path:'**',
-        redirectTo:'dashboard',
     }
 ];

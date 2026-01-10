@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import {  Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref, Router } from '@angular/router';
 import { MatIconModule, MatIcon } from '@angular/material/icon'
 import { Home } from './starts/home/home';
+import { Sessionlogin } from './Services/sessionlogin';
 
 interface FooterSection {
   title: string;
@@ -19,7 +20,7 @@ interface FooterSection {
 export class App {
   protected readonly title = signal('sample');
 
-  session=signal(false);
+  session!:any;
   
 
   commentForm: FormGroup;
@@ -33,7 +34,8 @@ export class App {
     '24/7 technical support'
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private sessionLogin:Sessionlogin,private route:Router) {
+    this.session=this.sessionLogin.session;
     this.commentForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

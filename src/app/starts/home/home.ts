@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Sessionlogin } from '../../Services/sessionlogin';
+import { LoginRegister } from '../login-register/login-register';
 
 interface Stat {
   value: string;
@@ -17,15 +20,27 @@ interface Feature {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, LoginRegister],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
 
- scrolled = false;
-  heroVisible = true;
+  
+  scrolled = false;
+  heroVisible = false;
   currentYear = new Date().getFullYear();
+  private route=inject(Router);
+  session!:any;
+
+
+
+  constructor(private sessionLogin:Sessionlogin) {
+    this.session=sessionLogin.session;
+    setTimeout(() => {
+      this.heroVisible = true;
+    }, 100);
+  }
 
   stats: Stat[] = [
     { value: '50K+', label: 'Active Users' },
@@ -85,22 +100,31 @@ export class Home {
   mockData = [1, 2, 3, 4];
 
   ngOnInit() {
-    // Hero animation
-    setTimeout(() => this.heroVisible = true, 100);
     
-    // Feature cards staggered animation
     this.features.forEach((feature, index) => {
       setTimeout(() => feature.visible = true, index * 100);
     });
   }
 
-  sessionCount(){
-    window.location.href="/login";
-    sessionStorage.setItem('session','true');
+    openLogin() {
+      LoginRegister.prototype.Login();
   }
+
+  openRegister() {
+    LoginRegister.prototype.Register();
+  }
+
+  demo(){
+    this.session.set(true);
+    this.route.navigate(['dashboard']);
+  }
+
+
+
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.scrolled = window.scrollY > 50;
-  }}
+  }
+}
 
