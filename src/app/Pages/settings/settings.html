@@ -1,1 +1,695 @@
-<p>settings works!</p>
+<div class="distribution-settings-container">
+  <!-- Header -->
+  <div class="settings-header">
+    <div class="header-content">
+      <div class="header-title">
+        <h1>Distribution Management Settings</h1>
+        <p>Manage your organization and distribution preferences</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div class="alerts-container">
+    <div *ngIf="saveSuccess" class="alert alert-success">
+      ✓ Changes saved successfully
+    </div>
+    <div *ngIf="saveError" class="alert alert-error">
+      ✗ Error saving changes. Please try again.
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="settings-wrapper">
+    <div class="tabs-navigation">
+      <button 
+        *ngFor="let tab of ['profile', 'organization', 'distribution', 'security', 'notifications']"
+        (click)="switchTab(tab)"
+        [class.active]="activeTab === tab"
+        class="tab-button"
+      >
+        <span class="tab-icon">
+          <i [ngClass]="'icon-' + tab"></i>
+        </span>
+        {{ tab | titlecase }}
+      </button>
+    </div>
+
+    <!-- Content Area -->
+    <div class="settings-content">
+      <!-- Profile Tab -->
+      <div *ngIf="activeTab === 'profile'" class="tab-content">
+        <div class="content-header">
+          <h2>User Profile</h2>
+          <button 
+            (click)="toggleEdit()"
+            [class.editing]="isEditing"
+            class="edit-button"
+          >
+            {{ isEditing ? '✕ Cancel' : '✎ Edit' }}
+          </button>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-avatar">
+            <div class="avatar-placeholder">
+              <span>RM</span>
+            </div>
+            <p class="avatar-label">Profile Picture</p>
+          </div>
+
+          <form [formGroup]="userForm" class="profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input 
+                  type="text" 
+                  formControlName="firstName"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input 
+                  type="text" 
+                  formControlName="lastName"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input 
+                  type="email" 
+                  formControlName="email"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input 
+                  type="tel" 
+                  formControlName="phone"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Role
+                <select 
+                  formControlName="role"
+                  [disabled]="!isEditing"
+                  class="form-input"
+                >
+                  <option value="">Select Role</option>
+                  <option value="Distribution Manager">Distribution Manager</option>
+                  <option value="Operations Manager">Operations Manager</option>
+                  <option value="Warehouse Supervisor">Warehouse Supervisor</option>
+                  <option value="Admin">Admin</option>
+                </select></label>
+              </div>
+              <div class="form-group">
+                <label>Department
+                <select 
+                  formControlName="department"
+                  [disabled]="!isEditing"
+                  class="form-input"
+                >
+                  <option value="">Select Department</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Logistics">Logistics</option>
+                  <option value="Warehouse">Warehouse</option>
+                  <option value="Administration">Administration</option>
+                </select></label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Job Title</label>
+              <input 
+                type="text" 
+                formControlName="jobTitle"
+                [readonly]="!isEditing"
+                class="form-input"
+              />
+            </div>
+
+            <div *ngIf="isEditing" class="form-actions">
+              <button 
+                (click)="saveUserProfile()"
+                [disabled]="!userForm.valid"
+                class="btn btn-primary"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Organization Tab -->
+      <div *ngIf="activeTab === 'organization'" class="tab-content">
+        <div class="content-header">
+          <h2>Organization Details</h2>
+          <button 
+            (click)="toggleEdit()"
+            [class.editing]="isEditing"
+            class="edit-button"
+          >
+            {{ isEditing ? '✕ Cancel' : '✎ Edit' }}
+          </button>
+        </div>
+
+        <form [formGroup]="organizationForm" class="settings-form">
+          <div class="form-section">
+            <h3>Company Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Company Name</label>
+                <input 
+                  type="text" 
+                  formControlName="companyName"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Registration Number</label>
+                <input 
+                  type="text" 
+                  formControlName="registrationNumber"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <input 
+                  type="email" 
+                  formControlName="companyEmail"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input 
+                  type="tel" 
+                  formControlName="companyPhone"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Website</label>
+              <input 
+                type="url" 
+                formControlName="website"
+                [readonly]="!isEditing"
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Address & Location</h3>
+            <div class="form-group">
+              <label>Street Address</label>
+              <input 
+                type="text" 
+                formControlName="address"
+                [readonly]="!isEditing"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>City</label>
+                <input 
+                  type="text" 
+                  formControlName="city"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>State/Province</label>
+                <input 
+                  type="text" 
+                  formControlName="state"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Zip Code</label>
+                <input 
+                  type="text" 
+                  formControlName="zipCode"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Country</label>
+                <input 
+                  type="text" 
+                  formControlName="country"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Business Details</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Industry
+                <select 
+                  formControlName="industry"
+                  [disabled]="!isEditing"
+                  class="form-input"
+                >
+                  <option value="">Select Industry</option>
+                  <option value="Distribution & Logistics">Distribution & Logistics</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="E-commerce">E-commerce</option>
+                </select></label>
+              </div>
+              <div class="form-group">
+                <label>Employee Count
+                <select 
+                  formControlName="employeeCount"
+                  [disabled]="!isEditing"
+                  class="form-input"
+                >
+                  <option value="">Select Range</option>
+                  <option value="50-100">50-100</option>
+                  <option value="100-150">100-150</option>
+                  <option value="150-200">150-200</option>
+                  <option value="200+">200+</option>
+                </select></label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tax ID</label>
+                <input 
+                  type="text" 
+                  formControlName="taxId"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Business License</label>
+                <input 
+                  type="text" 
+                  formControlName="businessLicense"
+                  [readonly]="!isEditing"
+                  class="form-input"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="isEditing" class="form-actions">
+            <button 
+              (click)="saveOrganization()"
+              [disabled]="!organizationForm.valid"
+              class="btn btn-primary"
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Distribution Tab -->
+      <div *ngIf="activeTab === 'distribution'" class="tab-content">
+        <div class="content-header">
+          <h2>Distribution Settings</h2>
+        </div>
+
+        <form [formGroup]="distributionForm" class="settings-form">
+          <div class="form-section">
+            <h3>Warehouse & Shipping</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Default Warehouse
+                <select 
+                  formControlName="defaultWarehouse"
+                  class="form-input"
+                >
+                  <option value="SF_MAIN_001">San Francisco Main - SF_MAIN_001</option>
+                  <option value="LA_DIST_001">Los Angeles Distribution - LA_DIST_001</option>
+                  <option value="NYC_HUB_001">New York Hub - NYC_HUB_001</option>
+                  <option value="CHI_CENT_001">Chicago Central - CHI_CENT_001</option>
+                </select></label>
+              </div>
+              <div class="form-group">
+                <label>Shipping Provider
+                <select 
+                  formControlName="shippingProvider"
+                  class="form-input"
+                >
+                  <option value="FedEx">FedEx</option>
+                  <option value="UPS">UPS</option>
+                  <option value="DHL">DHL</option>
+                  <option value="USPS">USPS</option>
+                </select></label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Invoice Format
+                <select 
+                  formControlName="invoiceFormat"
+                  class="form-input"
+                >
+                  <option value="PDF">PDF</option>
+                  <option value="XML">XML</option>
+                  <option value="CSV">CSV</option>
+                </select></label>
+              </div>
+              <div class="form-group">
+                <label>Default Currency
+                <select 
+                  formControlName="currency"
+                  class="form-input"
+                >
+                  <option value="USD">USD - US Dollar</option>
+                  <option value="EUR">EUR - Euro</option>
+                  <option value="GBP">GBP - British Pound</option>
+                  <option value="CAD">CAD - Canadian Dollar</option>
+                </select></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Automation & Optimization</h3>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  formControlName="autoAssignmentEnabled"
+                  class="checkbox-input"
+                />
+                <span>Enable Automatic Order Assignment</span>
+                <p class="checkbox-description">Automatically assign orders to available warehouses</p>
+              </label>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  formControlName="routeOptimization"
+                  class="checkbox-input"
+                />
+                <span>Enable Route Optimization</span>
+                <p class="checkbox-description">Optimize delivery routes for efficiency</p>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button 
+              (click)="saveDistribution()"
+              [disabled]="!distributionForm.valid"
+              class="btn btn-primary"
+            >
+              Save Settings
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Security Tab -->
+      <div *ngIf="activeTab === 'security'" class="tab-content">
+        <div class="content-header">
+          <h2>Security Settings</h2>
+        </div>
+
+        <form [formGroup]="securityForm" class="settings-form">
+          <div class="form-section security-section">
+            <h3>Authentication & Access</h3>
+            
+            <div class="security-item">
+              <div class="security-info">
+                <h4>Two-Factor Authentication</h4>
+                <p>Add an extra layer of security to your account</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="twoFactorEnabled"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="security-item">
+              <div class="security-info">
+                <h4>IP Restriction</h4>
+                <p>Restrict access to specific IP addresses</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="ipRestriction"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div *ngIf="securityForm.get('ipRestriction')?.value" class="form-group">
+              <label>Allowed IP Addresses (comma-separated)</label>
+              <textarea 
+                formControlName="allowedIPs"
+                class="form-input"
+                rows="4"
+                placeholder="192.168.1.1, 10.0.0.1"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Session Timeout (minutes)</label>
+              <input 
+                type="number" 
+                formControlName="sessionTimeout"
+                class="form-input"
+                min="5"
+                max="480"
+              />
+              <p class="form-help">Minimum 5 minutes, Maximum 8 hours</p>
+            </div>
+          </div>
+
+          <div class="form-section security-section">
+            <h3>Change Password</h3>
+            
+            <div class="form-group">
+              <label>Current Password</label>
+              <input 
+                type="password" 
+                formControlName="currentPassword"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>New Password</label>
+                <input 
+                  type="password" 
+                  formControlName="newPassword"
+                  class="form-input"
+                />
+              </div>
+              <div class="form-group">
+                <label>Confirm Password</label>
+                <input 
+                  type="password" 
+                  formControlName="confirmPassword"
+                  class="form-input"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button 
+              (click)="saveSecurity()"
+              class="btn btn-primary"
+            >
+              Update Security Settings
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Notifications Tab -->
+      <div *ngIf="activeTab === 'notifications'" class="tab-content">
+        <div class="content-header">
+          <h2>Notification Preferences</h2>
+        </div>
+
+        <form [formGroup]="notificationForm" class="settings-form">
+          <div class="form-section">
+            <h3>Notification Channels</h3>
+            
+            <div class="notification-item">
+              <div class="notification-info">
+                <h4>Email Notifications</h4>
+                <p>Receive important updates via email</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="emailNotifications"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <h4>SMS Alerts</h4>
+                <p>Get critical alerts via SMS</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="smsAlerts"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Alert Types</h3>
+            
+            <div class="notification-item">
+              <div class="notification-info">
+                <h4>Low Stock Alerts</h4>
+                <p>Be notified when inventory falls below threshold</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="lowStockAlerts"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <h4>Delivery Updates</h4>
+                <p>Get notified about shipment status changes</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="deliveryUpdates"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <h4>Weekly Reports</h4>
+                <p>Receive comprehensive weekly distribution reports</p>
+              </div>
+              <label class="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  formControlName="weeklyReports"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Preferences</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>Timezone
+                <select 
+                  formControlName="timezone"
+                  class="form-input"
+                >
+                  <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                  <option value="America/Denver">Mountain Time (MT)</option>
+                  <option value="America/Chicago">Central Time (CT)</option>
+                  <option value="America/New_York">Eastern Time (ET)</option>
+                  <option value="Europe/London">GMT - London</option>
+                  <option value="Europe/Paris">CET - Paris</option>
+                  <option value="Asia/Tokyo">JST - Tokyo</option>
+                </select></label>
+              </div>
+              <div class="form-group">
+                <label>Language
+                <select 
+                  formControlName="language"
+                  class="form-input"
+                >
+                  <option value="English">English</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="French">French</option>
+                  <option value="German">German</option>
+                  <option value="Chinese">Chinese</option>
+                </select></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button 
+              (click)="saveNotifications()"
+              [disabled]="!notificationForm.valid"
+              class="btn btn-primary"
+            >
+              Save Preferences
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

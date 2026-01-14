@@ -11,54 +11,68 @@
     </svg></div>
   <div class="Store-name">StoreLink</div>
 </div>
-  <nav class="nav-left">
-    <a routerLink="/dashboard">
+  <div class="nav-bar">
+    <div class="navigate-before">
+      <mat-icon>navigate_before</mat-icon>
+    </div>
+    <div class="nav-overlay" [class.menu-open]="isMenuOpen" (click)="toggleMenu()">
+      <nav class="nav-left">
+    <a routerLink="/dashboard" (click)="closeMenu()">
       <div class="header-name">
+        <div class="header-icon">
+          <mat-icon>dashboard</mat-icon>
+        </div>
         Dashboard
       </div>
-      <div class="header-icon">
-        <mat-icon>dashboard</mat-icon>
-    </div>
     </a>
-    <a routerLink="/progress">
-      <div class="header-name">Progress</div>
-      <div class="header-icon">
+    <a routerLink="/progress" (click)="closeMenu()">
+      <div class="header-name">
+        <div class="header-icon">
         <mat-icon>autorenewicon</mat-icon>
       </div>
+        Progress</div>
     </a>
-    <a routerLink="/stores"><div class="header-name">Stores</div>
-    <div class="header-icon">
+    <a routerLink="/stores" (click)="closeMenu()"><div class="header-name"><div class="header-icon">
       <mat-icon>store</mat-icon>
-    </div></a>
-    <a routerLink="/depos"><div class="header-name">Depos</div>
-    <div class="header-icon">
-      <mat-icon>local_shipping</mat-icon>
-    </div></a>
-    <a routerLink="/hubs"><div class="header-name">Hubs</div>
-    <div class="header-icon">
-      <mat-icon>business</mat-icon>
-    </div></a>
-    <a routerLink="/suppliers"><div class="header-name">Suppliers</div>
-    <div class="header-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-    </div></a>
-    <a routerLink="/routes"><div class="header-name">Routes</div>
-      <div class="header-icon">
-        <mat-icon>swap_calls</mat-icon>
-    </div>
+    </div>Stores</div>
     </a>
-    <a routerLink="/settings">
-      <div class="header-name">Settings</div>
-      <div class="header-icon">
+    <a routerLink="/depos" (click)="closeMenu()"><div class="header-name"><div class="header-icon">
+      <mat-icon>local_shipping</mat-icon>
+    </div>Depos</div>
+    </a>
+    <a routerLink="/hubs" (click)="closeMenu()"><div class="header-name"><div class="header-icon">
+      <mat-icon>business</mat-icon>
+    </div>Hubs</div>
+    </a>
+    <a routerLink="/suppliers" (click)="closeMenu()"><div class="header-name"><div class="header-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+    </div>Suppliers</div>
+    </a>
+    <a routerLink="/routes" (click)="closeMenu()"><div class="header-name"><div class="header-icon">
+        <mat-icon>swap_calls</mat-icon>
+    </div>Routes</div>
+      
+    </a>
+    <a routerLink="/settings" (click)="closeMenu()">
+      <div class="header-name"><div class="header-icon">
         <mat-icon>settings</mat-icon>
-      </div>
+      </div>Settings</div>
+      
     </a>
   </nav>
+    </div>
+    <div class="navigate-next">
+      <mat-icon>navigate_next</mat-icon>
+    </div>
+  <div class="menu-bar">
+      <mat-icon>menu</mat-icon>
+    </div>
+  </div>
 </header>
 <router-outlet></router-outlet>
 
 }@else if(!session()){
-  <app-home></app-home>
+  
   <router-outlet></router-outlet>
 }
 

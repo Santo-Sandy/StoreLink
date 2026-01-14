@@ -13,7 +13,7 @@ interface FooterSection {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, MatIcon, Home],
+  imports: [RouterOutlet, RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, MatIcon],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -21,7 +21,15 @@ export class App {
   protected readonly title = signal('sample');
 
   session!:any;
-  
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
 
   commentForm: FormGroup;
   currentYear: number = new Date().getFullYear();

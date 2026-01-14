@@ -12,8 +12,13 @@ import { Dashboard } from './Pages/dashboard/dashboard';
 import { LoginRegister } from './starts/login-register/login-register';
 
 export const routes: Routes = [
-    {
+      {
         path:'',
+        component: Home,
+        title:'Home',
+    },
+    {
+        path:'home',
         component: Home,
         title:'Home',
     },

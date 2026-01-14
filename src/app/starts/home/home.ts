@@ -97,7 +97,11 @@ export class Home {
     'Mobile App Integration'
   ];
 
-  mockData = [1, 2, 3, 4];
+  mockData = [
+  {mock:"Secure & Compliant",star:'☆☆☆☆☆'},
+  {mock:"Global Reach",star:'☆☆☆☆'},
+  {mock:"Inventory Management",star:'☆☆☆☆'},
+];
 
   ngOnInit() {
     

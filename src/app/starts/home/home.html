@@ -25,11 +25,6 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-    <div class="hero-background">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
     <div class="hero-content" [class.visible]="heroVisible">
         <h1 class="hero-title">
         Revolutionize Your
@@ -158,8 +153,8 @@
         <div class="solutions-visual">
         <div class="mock-dashboard">
             <div class="mock-item" *ngFor="let item of mockData">
-            <div class="mock-bar"></div>
-            <div class="mock-text"></div>
+            <div class="mock-bar" [style.width.%]="(item.star.length / 5) * 100"></div>
+            <div class="mock-text" style="width: auto;">{{item.mock}}</div>
             </div>
         </div>
         </div>
