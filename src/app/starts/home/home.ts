@@ -31,12 +31,15 @@ export class Home {
   heroVisible = false;
   currentYear = new Date().getFullYear();
   private route=inject(Router);
-  session!:any;
+  session;
+
 
 
 
   constructor(private sessionLogin:Sessionlogin) {
-    this.session=sessionLogin.session;
+  sessionLogin.session.set(false);
+  this.session=sessionLogin.session;
+
     setTimeout(() => {
       this.heroVisible = true;
     }, 100);
@@ -122,9 +125,6 @@ export class Home {
     this.session.set(true);
     this.route.navigate(['dashboard']);
   }
-
-
-
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

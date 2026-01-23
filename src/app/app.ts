@@ -18,9 +18,9 @@ interface FooterSection {
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('sample');
 
-  session!:any;
+  protected readonly title = signal('sample');
+  session;
   isMenuOpen = false;
 
   toggleMenu(): void {

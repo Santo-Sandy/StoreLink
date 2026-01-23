@@ -5,6 +5,4 @@ import { Injectable, signal } from '@angular/core';
 })
 export class Sessionlogin {
   session=signal(false);
-
-
 }

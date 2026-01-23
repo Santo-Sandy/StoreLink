@@ -6,7 +6,7 @@ import { DistributionSettings, NotificationSettings, OrganizationProfile, Securi
   providedIn: 'root',
 })
 export class Setting {
-   private organizationSubject = new BehaviorSubject<OrganizationProfile>(this.getDefaultOrganization());
+  private organizationSubject = new BehaviorSubject<OrganizationProfile>(this.getDefaultOrganization());
   private userSubject = new BehaviorSubject<UserProfile>(this.getDefaultUser());
   private securitySubject = new BehaviorSubject<SecuritySettings>(this.getDefaultSecurity());
   private notificationSubject = new BehaviorSubject<NotificationSettings>(this.getDefaultNotifications());

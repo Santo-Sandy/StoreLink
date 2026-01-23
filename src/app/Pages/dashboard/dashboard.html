@@ -1,1 +1,470 @@
-<p>dashboard works!</p>
+<div class="dashboard dashboard-container">
+    <header class="dashboard-header">
+        <div class="dashboard-header-content">
+            <div class="dashboard-header-title">
+                <h1>Dashboard</h1>
+                <p class="dashboard-subtitle">Real-time Supply Chain Route Tracking & Organization Performance Analytics
+                </p>
+            </div>
+            <div class="dashboard-header-actions">
+                <button class="dashboard-btn dashboard-btn-secondary" (click)="refreshData()" [disabled]="isLoading">
+                    <span class="dashboard-icon"><mat-icon>refreshData</mat-icon></span> Refresh
+                </button>
+                <button class="dashboard-btn dashboard-btn-secondary" (click)="exportReport()">
+                    <span class="dashboard-icon"><mat-icon>download</mat-icon></span> Export Report
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Error Alert -->
+    <div *ngIf="errorMessage" class="dashboard-alert dashboard-alert-error">
+        <span class="dashboard-icon">✕</span>
+        {{ errorMessage }}
+        <button (click)="errorMessage = null" class="dashboard-close-btn">×</button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="dashboard-loader-overlay">
+        <div class="dashboard-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Main Content -->
+    <div *ngIf="!isLoading" class="dashboard-content">
+        <!-- Left Sidebar - Organization Report -->
+        <aside class="dashboard-sidebar">
+            <div class="dashboard-report-panel">
+                <h2 class="dashboard-panel-title">Organization Performance Report</h2>
+
+                <div *ngIf="organizationReport" class="dashboard-report-cards">
+                    <!-- Overall Efficiency -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Operational Efficiency</span>
+                            <span class="dashboard-card-icon">⚙️</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.totalOperationalEfficiency }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill"
+                                [style.width.%]="organizationReport.totalOperationalEfficiency">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completion Rate -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Completion Rate</span>
+                            <span class="dashboard-card-icon">✓</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.completionRate }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill" [style.width.%]="organizationReport.completionRate"
+                                [ngClass]="getProgressColor(organizationReport.completionRate)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeliness Score -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Timeliness Score</span>
+                            <span class="dashboard-card-icon">⏱️</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.timelinessScore }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill" [style.width.%]="organizationReport.timelinessScore">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Score -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Quality Score</span>
+                            <span class="dashboard-card-icon">⭐</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.qualityScore }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill" [style.width.%]="organizationReport.qualityScore">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cost Effectiveness -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Cost Effectiveness</span>
+                            <span class="dashboard-card-icon">💰</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.costEffectiveness }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill" [style.width.%]="organizationReport.costEffectiveness">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Satisfaction -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Customer Satisfaction</span>
+                            <span class="dashboard-card-icon">😊</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.customerSatisfaction }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill"
+                                [style.width.%]="organizationReport.customerSatisfaction">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource Utilization -->
+                    <div class="dashboard-report-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Resource Utilization</span>
+                            <span class="dashboard-card-icon">📦</span>
+                        </div>
+                        <div class="dashboard-card-value">{{ organizationReport.resourceUtilization }}%</div>
+                        <div class="dashboard-progress-bar">
+                            <div class="dashboard-progress-fill"
+                                [style.width.%]="organizationReport.resourceUtilization">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Level -->
+                    <div class="dashboard-report-card dashboard-risk-card">
+                        <div class="dashboard-card-header">
+                            <span class="dashboard-card-label">Risk Level</span>
+                            <span class="dashboard-card-icon">⚠️</span>
+                        </div>
+                        <span class="dashboard-risk-badge"
+                            [ngClass]="'dashboard-risk-' + organizationReport.riskLevel.toLowerCase()">
+                            {{ organizationReport.riskLevel }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Summary Stats -->
+                <div *ngIf="summary" class="dashboard-summary-stats">
+                    <h3 class="dashboard-stats-title">Route Statistics</h3>
+                    <div class="dashboard-stat-row">
+                        <span class="dashboard-stat-label">Total Routes:</span>
+                        <span class="dashboard-stat-value">{{ summary.totalRoutes }}</span>
+                    </div>
+                    <div class="dashboard-stat-row">
+                        <span class="dashboard-stat-label">Avg Efficiency:</span>
+                        <span class="dashboard-stat-value">{{ summary.avgEfficiency }}%</span>
+                    </div>
+                    <div class="dashboard-stat-row">
+                        <span class="dashboard-stat-label">Total Distance:</span>
+                        <span class="dashboard-stat-value">{{ summary.totalDistance }} km</span>
+                    </div>
+                    <div class="dashboard-stat-row">
+                        <span class="dashboard-stat-label">Completed Distance:</span>
+                        <span class="dashboard-stat-value">{{ summary.completedDistance }} km</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-main">
+            <!-- Summary Cards -->
+            <div *ngIf="summary" class="dashboard-summary-cards">
+                <div class="dashboard-summary-card dashboard-card-completed">
+                    <div class="dashboard-card-top">
+                        <span class="dashboard-card-count">{{ summary.completedRoutes }}</span>
+                        <span class="dashboard-card-icon">✓</span>
+                    </div>
+                    <span class="dashboard-card-title">Completed Routes</span>
+                    <p class="dashboard-card-percentage">{{ ((summary.completedRoutes / summary.totalRoutes) * 100) |
+                        number: '1.0-0' }}%</p>
+                </div>
+
+                <div class="dashboard-summary-card dashboard-card-in-progress">
+                    <div class="dashboard-card-top">
+                        <span class="dashboard-card-count">{{ summary.inProgressRoutes }}</span>
+                        <span class="dashboard-card-icon">→</span>
+                    </div>
+                    <span class="dashboard-card-title">In Progress</span>
+                    <p class="dashboard-card-percentage">{{ ((summary.inProgressRoutes / summary.totalRoutes) * 100) |
+                        number: '1.0-0' }}%</p>
+                </div>
+
+                <div class="dashboard-summary-card dashboard-card-pending">
+                    <div class="dashboard-card-top">
+                        <span class="dashboard-card-count">{{ summary.pendingRoutes }}</span>
+                        <span class="dashboard-card-icon">⏳</span>
+                    </div>
+                    <span class="dashboard-card-title">Pending Routes</span>
+                    <p class="dashboard-card-percentage">{{ ((summary.pendingRoutes / summary.totalRoutes) * 100) |
+                        number: '1.0-0' }}%</p>
+                </div>
+
+                <div class="dashboard-summary-card dashboard-card-failed">
+                    <div class="dashboard-card-top">
+                        <span class="dashboard-card-count">{{ summary.failedRoutes }}</span>
+                        <span class="dashboard-card-icon">✕</span>
+                    </div>
+                    <span class="dashboard-card-title">Failed Routes</span>
+                    <p class="dashboard-card-percentage">{{ ((summary.failedRoutes / summary.totalRoutes) * 100) |
+                        number: '1.0-0' }}%</p>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab-btn" [class.active]="activeTab === 'completed'"
+                    (click)="activeTab = 'completed'">
+                    ✓ Completed Routes ({{ summary?.completedRoutes }})
+                </button>
+                <button class="dashboard-tab-btn" [class.active]="activeTab === 'inProgress'"
+                    (click)="activeTab = 'inProgress'">
+                    → In Progress ({{ summary?.inProgressRoutes }})
+                </button>
+                <button class="dashboard-tab-btn" [class.active]="activeTab === 'pending'"
+                    (click)="activeTab = 'pending'">
+                    ⏳ Pending ({{ summary?.pendingRoutes }})
+                </button>
+            </div>
+
+            <!-- Completed Routes View -->
+            <div *ngIf="activeTab === 'completed'" class="dashboard-routes-section">
+                <div *ngFor="let route of getCompletedRoutes()" class="dashboard-route-card"
+                    (click)="selectRoute(route)">
+                    <div class="dashboard-route-header">
+                        <div class="dashboard-route-title">
+                            <h3>{{ route.name }}</h3>
+                            <span class="dashboard-route-status" [ngClass]="getStatusClass(route.status)">
+                                {{ route.status | uppercase }}
+                            </span>
+                        </div>
+                        <div class="dashboard-route-progress">
+                            <span class="dashboard-progress-percentage">{{ route.progress }}%</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-route-locations">
+                        <div class="dashboard-location">
+                            <span class="dashboard-icon">📍</span>
+                            <div class="dashboard-location-info">
+                                <p class="dashboard-label">From</p>
+                                <p class="dashboard-value">{{ route.startLocation }}</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-arrow">→</div>
+                        <div class="dashboard-location">
+                            <span class="dashboard-icon">📍</span>
+                            <div class="dashboard-location-info">
+                                <p class="dashboard-label">To</p>
+                                <p class="dashboard-value">{{ route.endLocation }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-route-metrics">
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Distance</span>
+                            <span class="dashboard-metric-value">{{ route.completedDistance }} / {{ route.totalDistance
+                                }} km</span>
+                        </div>
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Efficiency</span>
+                            <span class="dashboard-metric-value">{{ route.efficiency }}%</span>
+                        </div>
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Completed</span>
+                            <span class="dashboard-metric-value">{{ route.actualCompletion | date: 'MMM dd, yyyy'
+                                }}</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-progress-bar">
+                        <div class="dashboard-progress-fill" [style.width.%]="route.progress"
+                            [ngClass]="getProgressColor(route.progress)">
+                        </div>
+                    </div>
+
+                    <!-- Checkpoints -->
+                    <div class="dashboard-checkpoints">
+                        <div *ngFor="let checkpoint of route.checkpoints" class="dashboard-checkpoint">
+                            <div class="dashboard-checkpoint-marker"
+                                [ngClass]="getCheckpointStatusClass(checkpoint.status)"></div>
+                            <div class="dashboard-checkpoint-info">
+                                <p class="dashboard-checkpoint-name">{{ checkpoint.name }}</p>
+                                <p class="dashboard-checkpoint-location">{{ checkpoint.location }}</p>
+                                <p class="dashboard-checkpoint-notes">{{ checkpoint.notes }}</p>
+                            </div>
+                            <div class="dashboard-checkpoint-time">
+                                {{ checkpoint.timestamp | date: 'MMM dd, HH:mm' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- In Progress Routes View -->
+            <div *ngIf="activeTab === 'inProgress'" class="dashboard-routes-section">
+                <div *ngFor="let route of getInProgressRoutes()" class="dashboard-route-card dashboard-route-active"
+                    (click)="selectRoute(route)">
+                    <div class="dashboard-route-header">
+                        <div class="dashboard-route-title">
+                            <h3>{{ route.name }}</h3>
+                            <span class="dashboard-route-status" [ngClass]="getStatusClass(route.status)">
+                                {{ route.status | uppercase }}
+                            </span>
+                        </div>
+                        <div class="dashboard-route-progress">
+                            <span class="dashboard-progress-percentage dashboard-pulse">{{ route.progress }}%</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-route-locations">
+                        <div class="dashboard-location">
+                            <span class="dashboard-icon">📍</span>
+                            <div class="dashboard-location-info">
+                                <p class="dashboard-label">From</p>
+                                <p class="dashboard-value">{{ route.startLocation }}</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-arrow">→</div>
+                        <div class="dashboard-location">
+                            <span class="dashboard-icon">📍</span>
+                            <div class="dashboard-location-info">
+                                <p class="dashboard-label">To</p>
+                                <p class="dashboard-value">{{ route.endLocation }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-route-metrics">
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Distance</span>
+                            <span class="dashboard-metric-value">{{ route.completedDistance }} / {{ route.totalDistance
+                                }} km</span>
+                        </div>
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Efficiency</span>
+                            <span class="dashboard-metric-value">{{ route.efficiency }}%</span>
+                        </div>
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">ETA</span>
+                            <span class="dashboard-metric-value">{{ route.estimatedCompletion | date: 'MMM dd, yyyy'
+                                }}</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-progress-bar">
+                        <div class="dashboard-progress-fill dashboard-progress-in-progress"
+                            [style.width.%]="route.progress">
+                        </div>
+                    </div>
+
+                    <!-- Checkpoints -->
+                    <div class="dashboard-checkpoints">
+                        <div *ngFor="let checkpoint of route.checkpoints" class="dashboard-checkpoint">
+                            <div class="dashboard-checkpoint-marker"
+                                [ngClass]="getCheckpointStatusClass(checkpoint.status)"></div>
+                            <div class="dashboard-checkpoint-info">
+                                <p class="dashboard-checkpoint-name">{{ checkpoint.name }}</p>
+                                <p class="dashboard-checkpoint-location">{{ checkpoint.location }}</p>
+                                <p class="dashboard-checkpoint-notes">{{ checkpoint.notes }}</p>
+                            </div>
+                            <div class="dashboard-checkpoint-time">
+                                {{ checkpoint.timestamp | date: 'MMM dd, HH:mm' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="dashboard-route-actions">
+                        <button class="dashboard-btn dashboard-btn-sm dashboard-btn-primary"
+                            (click)="completeRoute(route.id)">
+                            ✓ Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Routes View -->
+            <div *ngIf="activeTab === 'pending'" class="dashboard-routes-section">
+                <div *ngFor="let route of getPendingRoutes()" class="dashboard-route-card dashboard-route-pending"
+                    (click)="selectRoute(route)">
+                    <div class="dashboard-route-header">
+                        <div class="dashboard-route-title">
+                            <h3>{{ route.name }}</h3>
+                            <span class="dashboard-route-status" [ngClass]="getStatusClass(route.status)">
+                                {{ route.status | uppercase }}
+                            </span>
+                        </div>
+                        <div class="dashboard-route-progress">
+                            <span class="dashboard-progress-percentage">{{ route.progress }}%</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-route-locations">
+                        <div class="dashboard-location">
+                            <span class="dashboard-icon">📍</span>
+                            <div class="dashboard-location-info">
+                                <p class="dashboard-label">From</p>
+                                <p class="dashboard-value">{{ route.startLocation }}</p>
+                            </div>
+                        </div>
+                        <div class="dashboard-arrow">→</div>
+                        <div class="dashboard-location">
+                            <span class="dashboard-icon">📍</span>
+                            <div class="dashboard-location-info">
+                                <p class="dashboard-label">To</p>
+                                <p class="dashboard-value">{{ route.endLocation }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-route-metrics">
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Distance</span>
+                            <span class="dashboard-metric-value">{{ route.totalDistance }} km</span>
+                        </div>
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Scheduled For</span>
+                            <span class="dashboard-metric-value">{{ route.estimatedCompletion | date: 'MMM dd, yyyy'
+                                }}</span>
+                        </div>
+                        <div class="dashboard-metric">
+                            <span class="dashboard-metric-label">Status</span>
+                            <span class="dashboard-metric-value">Ready to Start</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-progress-bar">
+                        <div class="dashboard-progress-fill" [style.width.%]="route.progress">
+                        </div>
+                    </div>
+
+                    <!-- Checkpoints -->
+                    <div class="dashboard-checkpoints">
+                        <div *ngFor="let checkpoint of route.checkpoints" class="dashboard-checkpoint">
+                            <div class="dashboard-checkpoint-marker"
+                                [ngClass]="getCheckpointStatusClass(checkpoint.status)"></div>
+                            <div class="dashboard-checkpoint-info">
+                                <p class="dashboard-checkpoint-name">{{ checkpoint.name }}</p>
+                                <p class="dashboard-checkpoint-location">{{ checkpoint.location }}</p>
+                                <p class="dashboard-checkpoint-notes">{{ checkpoint.notes }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="dashboard-route-actions">
+                        <button class="dashboard-btn dashboard-btn-sm dashboard-btn-success"
+                            (click)="startRoute(route.id)">
+                            ▶ Start Route
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

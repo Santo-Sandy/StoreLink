@@ -59,25 +59,21 @@ body{
   position: absolute;
   color: white;
   cursor: pointer;
-  background: rgb(2, 162, 211);
+  background: linear-gradient(90deg,rgb(2, 162, 211),rgba(13, 142, 202, 0.904) );
   width: 60px;
   height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 0px;
+  z-index: 10;
   transition: all 0.3s ease-in-out;
   font-size: 30px;
 }
 
 .navigate-before{
   left: 0px;
-  top: 0px;
-  display: none;
+
 }
 .navigate-next{
-  display: none;
   right: 0px;
-  top: 0px;
 }
 
 .navigate-before mat-icon, .navigate-next mat-icon{
@@ -418,11 +414,11 @@ body{
   }
   .navigate-before{
     display: block;
-    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.404), 0 0px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 0px 10px  rgba(0, 0, 0, 0.2) ;
   }
   .navigate-next{
     display: block;
-    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.404), 0 0px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: -5px 0px 10px  rgba(0, 0, 0, 0.2);
   }
   .nav-left a:hover {
   color: #bbbbbb;
