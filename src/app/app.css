@@ -49,6 +49,8 @@ body{
   left: 0px;
   overflow-x: auto;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   justify-content: center;
   align-items: center;
   flex-grow: 1;

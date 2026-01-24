@@ -12,11 +12,11 @@
   <div class="Store-name">StoreLink</div>
 </div>
   <div class="nav-bar">
-    <div class="navigate-before">
+    <div class="navigate-before" (click)="scrollLeft()">
       <mat-icon>navigate_before</mat-icon>
     </div>
-    <div class="nav-overlay" [class.menu-open]="isMenuOpen" (click)="toggleMenu()">
-      <nav class="nav-left">
+    <div  class="nav-overlay" [class.menu-open]="isMenuOpen" (click)="toggleMenu()">
+      <nav #navLeftscroll class="nav-left" >
     <a routerLink="/dashboard" (click)="closeMenu()">
       <div class="header-name">
         <div class="header-icon">
@@ -61,7 +61,7 @@
     </a>
   </nav>
     </div>
-    <div class="navigate-next">
+    <div class="navigate-next" (click)="scrollRight()">
       <mat-icon>navigate_next</mat-icon>
     </div>
   <div class="menu-bar">

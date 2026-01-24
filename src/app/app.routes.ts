@@ -10,6 +10,7 @@ import { Progress } from './Pages/progress/progress';
 import { Supplier } from './Pages/suppliers/supplier/supplier';
 import { Dashboard } from './Pages/dashboard/dashboard';
 import { LoginRegister } from './starts/login-register/login-register';
+import { Depo } from './Pages/depos/depo/depo';
 
 export const routes: Routes = [
       {
@@ -41,8 +42,12 @@ export const routes: Routes = [
         path:'supplier/:id',
         component: Supplier,
         title:'Supplier',
-    }
-    ,
+    },
+    {
+        path:'depo',
+        component:Depo,
+        title:'Depo',
+    },
     {
         path:'routes',
         loadComponent:()=>import ('./Pages/routes/routes').then(m=>m.Routes),

@@ -1,0 +1,617 @@
+    /* Depot Detail Header Styles */
+    .depot-detail-header {
+    background: linear-gradient(135deg, #a9d8ff 0%, #82ffda 100%);
+    padding: 24px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    }
+
+    .depot-detail-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    }
+
+    .depot-detail-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .depot-detail-title-content {
+    flex: 1;
+    }
+
+    .depot-detail-main-title {
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    }
+
+    .depot-detail-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 500;
+    }
+
+    .depot-detail-badge {
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .depot-status-active {
+    background: linear-gradient(135deg, #81b983a2 0%, #ffffff87 100%);
+    color: white;
+    }
+
+    .depot-status-inactive {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+    color: white;
+    }
+
+    .depot-status-maintenance {
+    background: linear-gradient(135deg, #ff9800 0%, #fb8c00 100%);
+    color: white;
+    }
+
+    /* Depot Detail Main Content */
+    .depot-detail-main {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 200px);
+    padding: 32px 0;
+    }
+
+    /* Depot Info Cards Grid */
+    .depot-detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+    }
+
+    .depot-detail-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 20px;
+    transition: all 0.3s ease;
+    border-left: 4px solid;
+    }
+
+    .depot-detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .depot-detail-card-primary {
+    border-left-color: #2196f3;
+    }
+
+    .depot-detail-card-info {
+    border-left-color: #9c27b0;
+    }
+
+    .depot-detail-card-success {
+    border-left-color: #4caf50;
+    }
+
+    .depot-detail-card-warning {
+    border-left-color: #ff9800;
+    }
+
+    .depot-detail-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    flex-shrink: 0;
+    }
+
+    .depot-detail-card-primary .depot-detail-card-icon {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    }
+
+    .depot-detail-card-info .depot-detail-card-icon {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    }
+
+    .depot-detail-card-success .depot-detail-card-icon {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    }
+
+    .depot-detail-card-warning .depot-detail-card-icon {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    }
+
+    .depot-detail-card-content {
+    flex: 1;
+    }
+
+    .depot-detail-card-label {
+    font-size: 13px;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    }
+
+    .depot-detail-card-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+    }
+
+    .depot-detail-card-footer {
+    font-size: 13px;
+    color: #999;
+    font-weight: 500;
+    }
+
+    .depot-detail-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 12px 0;
+    }
+
+    .depot-detail-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    }
+
+    .depot-capacity-low {
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    }
+
+    .depot-capacity-medium {
+    background: linear-gradient(135deg, #ff9800 0%, #ffa726 100%);
+    }
+
+    .depot-capacity-high {
+    background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+    }
+
+    /* Depot Tabs */
+    .depot-detail-tabs {
+    background: white;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .depot-detail-tab {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+
+    .depot-detail-tab:hover {
+    background: rgb(78, 126, 146);
+    color: #333;
+    }
+
+    .depot-detail-tab-active {
+    background: rgb(78, 126, 146);
+    color: white;
+    box-shadow: 0 4px 8px rgba(25, 118, 210, 0.3);
+    }
+
+    /* Depot Tab Content */
+    .depot-detail-tab-content {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .depot-detail-section {
+    margin-bottom: 32px;
+    }
+
+    .depot-detail-section:last-child {
+    margin-bottom: 0;
+    }
+
+    .depot-detail-section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #e0e0e0;
+    }
+
+    /* Depot Info List */
+    .depot-detail-info-list {
+    display: grid;
+    gap: 16px;
+    }
+
+    .depot-detail-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    }
+
+    .depot-detail-info-item:hover {
+    background: #e9ecef;
+    transform: translateX(4px);
+    }
+
+    .depot-detail-info-label {
+    font-size: 15px;
+    color: #666;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    }
+
+    .depot-detail-info-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    text-align: right;
+    }
+
+    /* Depot Connection Grid */
+    .depot-detail-connection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    }
+
+    .depot-detail-connection-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    }
+
+    .depot-detail-connection-card:hover {
+    border-color: #1976d2;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .depot-detail-connection-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    }
+
+    .depot-detail-connection-hub {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    }
+
+    .depot-detail-connection-store {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    }
+
+    .depot-detail-connection-info {
+    flex: 1;
+    }
+
+    .depot-detail-connection-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+    }
+
+    .depot-detail-connection-location {
+    font-size: 13px;
+    color: #666;
+    }
+
+    /* Depot Table Styles */
+    .depot-detail-table-wrapper {
+    overflow-x: auto;
+    }
+
+    .depot-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+    .depot-detail-table thead {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .depot-detail-table th {
+    padding: 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e0e0e0;
+    }
+
+    .depot-detail-table td {
+    padding: 16px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    }
+
+    .depot-detail-table tbody tr {
+    transition: all 0.3s ease;
+    }
+
+    .depot-detail-table tbody tr:hover {
+    background: #f8f9fa;
+    }
+
+    .depot-detail-table-id {
+    font-weight: 700;
+    color: #1976d2;
+    }
+
+    .depot-detail-shipment-badge {
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    }
+
+    .depot-shipment-pending {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    color: #e65100;
+    }
+
+    .depot-shipment-in-transit {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    color: #1565c0;
+    }
+
+    .depot-shipment-delivered {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: #2e7d32;
+    }
+
+    .depot-shipment-cancelled {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    color: #c62828;
+    }
+
+    /* Depot Timeline Styles */
+    .depot-detail-timeline {
+    position: relative;
+    padding-left: 40px;
+    }
+
+    .depot-detail-timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #1976d2 0%, #e0e0e0 100%);
+    }
+
+    .depot-detail-timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 16px;
+    }
+
+    .depot-detail-timeline-item:last-child {
+    margin-bottom: 0;
+    }
+
+    .depot-detail-timeline-icon {
+    position: absolute;
+    left: -40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    }
+
+    .depot-activity-inbound {
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    }
+
+    .depot-activity-outbound {
+    background: linear-gradient(135deg, #2196f3 0%, #42a5f5 100%);
+    }
+
+    .depot-activity-transfer {
+    background: linear-gradient(135deg, #ff9800 0%, #ffa726 100%);
+    }
+
+    .depot-activity-maintenance {
+    background: linear-gradient(135deg, #9c27b0 0%, #ab47bc 100%);
+    }
+
+    .depot-detail-timeline-content {
+    flex: 1;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    }
+
+    .depot-detail-timeline-content:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .depot-detail-timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 12px;
+    }
+
+    .depot-detail-timeline-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    flex: 1;
+    }
+
+    .depot-detail-timeline-time {
+    font-size: 13px;
+    color: #999;
+    font-weight: 600;
+    white-space: nowrap;
+    }
+
+    .depot-detail-timeline-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    }
+
+    .depot-detail-timeline-detail {
+    font-size: 13px;
+    color: #666;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    }
+
+    /* Button Styles */
+    .depot-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    }
+
+    .depot-btn-icon {
+    font-size: 16px;
+    }
+
+    .depot-btn-edit {
+    background: linear-gradient(135deg, #ff9800 0%, #fb8c00 100%);
+    color: white;
+    }
+
+    .depot-btn-edit:hover {
+    background: linear-gradient(135deg, #fb8c00 0%, #f57c00 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    }
+
+    .depot-btn-danger {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+    color: white;
+    }
+
+    .depot-btn-danger:hover {
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+    .depot-detail-main-title {
+    font-size: 28px;
+    }
+
+    .depot-detail-info-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .depot-detail-tabs {
+    flex-wrap: wrap;
+    }
+
+    .depot-detail-tab {
+    flex: 1 1 45%;
+    }
+
+    .depot-detail-connection-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .depot-detail-nav {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    }
+
+    .depot-detail-actions {
+    width: 100%;
+    }
+
+    .depot-detail-actions .depot-btn {
+    flex: 1;
+    }
+
+    .depot-detail-timeline {
+    padding-left: 30px;
+    }
+
+    .depot-detail-timeline-icon {
+    left: -30px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    }
+    }

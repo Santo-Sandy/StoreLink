@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {  Component, signal } from '@angular/core';
+import {  Component, ElementRef, HostListener, signal, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet, RouterLinkWithHref, Router } from '@angular/router';
 import { MatIconModule, MatIcon } from '@angular/material/icon'
@@ -19,9 +19,35 @@ interface FooterSection {
 })
 export class App {
 
+<<<<<<< Updated upstream
   protected readonly title = signal('sample');
   session;
+=======
+  session!:any;
+  scrollamount = 150;
+
+>>>>>>> Stashed changes
   isMenuOpen = false;
+
+
+  @ViewChild('navLeftscroll') scrollBox!: ElementRef<HTMLDivElement>;
+
+  scrollStep = 500;
+
+  scrollLeft(): void {
+    this.scrollBox.nativeElement.scrollBy({
+      left: -this.scrollStep,
+      behavior: 'smooth'
+    });
+  }
+
+  scrollRight(): void {
+    this.scrollBox.nativeElement.scrollBy({
+      left: this.scrollStep,
+      behavior: 'smooth'
+    });
+  }
+
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;

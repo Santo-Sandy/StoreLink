@@ -1,1 +1,252 @@
-<p>depo works!</p>
+    <div class="depot-detail-header">
+    <div class="depot-detail-container">
+
+        <div class="depot-detail-title-section">
+        <div class="depot-detail-title-content">
+            <h1 class="depot-detail-main-title">{{ depot.name }}</h1>
+            <p class="depot-detail-subtitle">{{ depot.id }} • {{ depot.location }}</p>
+        </div>
+        <span [class]="'depot-detail-badge ' + getStatusClass()">
+            {{ depot.status }}
+        </span>
+        </div>
+    </div>
+    </div>
+
+    <!-- Depot Detail Main Content -->
+    <div class="depot-detail-main">
+    <div class="depot-detail-container">
+        <!-- Depot Info Cards -->
+        <div class="depot-detail-info-grid">
+        <!-- Capacity Card -->
+        <div class="depot-detail-card depot-detail-card-primary">
+            <div class="depot-detail-card-icon">📦</div>
+            <div class="depot-detail-card-content">
+            <div class="depot-detail-card-label">Current Stock</div>
+            <div class="depot-detail-card-value">{{ depot.currentStock }} / {{ depot.capacity }}</div>
+            <div class="depot-detail-progress-bar">
+                <div
+                [class]="'depot-detail-progress-fill ' + getCapacityClass()"
+                [style.width.%]="getCapacityPercentage()"
+                ></div>
+            </div>
+            <div class="depot-detail-card-footer">
+                {{ getCapacityPercentage() | number : '1.0-1' }}% Utilized
+            </div>
+            </div>
+        </div>
+
+        <!-- Connected Hubs Card -->
+        <div class="depot-detail-card depot-detail-card-info">
+            <div class="depot-detail-card-icon">🔗</div>
+            <div class="depot-detail-card-content">
+            <div class="depot-detail-card-label">Connected Hubs</div>
+            <div class="depot-detail-card-value">{{ depot.connectedHubs.length }}</div>
+            <div class="depot-detail-card-footer">Active connections</div>
+            </div>
+        </div>
+
+        <!-- Connected Stores Card -->
+        <div class="depot-detail-card depot-detail-card-success">
+            <div class="depot-detail-card-icon">🏪</div>
+            <div class="depot-detail-card-content">
+            <div class="depot-detail-card-label">Connected Stores</div>
+            <div class="depot-detail-card-value">{{ depot.connectedStores.length }}</div>
+            <div class="depot-detail-card-footer">Serving locations</div>
+            </div>
+        </div>
+
+        <!-- Total Area Card -->
+        <div class="depot-detail-card depot-detail-card-warning">
+            <div class="depot-detail-card-icon">📐</div>
+            <div class="depot-detail-card-content">
+            <div class="depot-detail-card-label">Total Area</div>
+            <div class="depot-detail-card-value">{{ depot.totalArea }}</div>
+            <div class="depot-detail-card-footer">{{ depot.warehouseType }}</div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Depot Tabs Section -->
+        <div class="depot-detail-tabs">
+        <button
+            [class.depot-detail-tab-active]="activeTab === 'overview'"
+            class="depot-detail-tab"
+            (click)="setActiveTab('overview')"
+        >
+            Overview
+        </button>
+        <button
+            [class.depot-detail-tab-active]="activeTab === 'connections'"
+            class="depot-detail-tab"
+            (click)="setActiveTab('connections')"
+        >
+            Connections
+        </button>
+        <button
+            [class.depot-detail-tab-active]="activeTab === 'shipments'"
+            class="depot-detail-tab"
+            (click)="setActiveTab('shipments')"
+        >
+            Shipments
+        </button>
+        <button
+            [class.depot-detail-tab-active]="activeTab === 'activity'"
+            class="depot-detail-tab"
+            (click)="setActiveTab('activity')"
+        >
+            Activity Log
+        </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="depot-detail-tab-content">
+        <!-- Overview Tab -->
+        <div *ngIf="activeTab === 'overview'" class="depot-detail-overview">
+            <div class="depot-detail-section">
+            <h2 class="depot-detail-section-title">Basic Information</h2>
+            <div class="depot-detail-info-list">
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">📍 Full Address</span>
+                <span class="depot-detail-info-value">{{ depot.address }}</span>
+                </div>
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">👤 Manager</span>
+                <span class="depot-detail-info-value">{{ depot.manager }}</span>
+                </div>
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">📞 Contact</span>
+                <span class="depot-detail-info-value">{{ depot.managerContact }}</span>
+                </div>
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">📧 Email</span>
+                <span class="depot-detail-info-value">{{ depot.managerEmail }}</span>
+                </div>
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">🕐 Operating Hours</span>
+                <span class="depot-detail-info-value">{{ depot.operatingHours }}</span>
+                </div>
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">📅 Established Date</span>
+                <span class="depot-detail-info-value">{{
+                    depot.establishedDate | date : 'mediumDate'
+                }}</span>
+                </div>
+                <div class="depot-detail-info-item">
+                <span class="depot-detail-info-label">🔄 Last Updated</span>
+                <span class="depot-detail-info-value">{{ depot.lastUpdated | date : 'short' }}</span>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Connections Tab -->
+        <div *ngIf="activeTab === 'connections'" class="depot-detail-connections">
+            <div class="depot-detail-section">
+            <h2 class="depot-detail-section-title">Connected Hubs</h2>
+            <div class="depot-detail-connection-grid">
+                <div class="depot-detail-connection-card" *ngFor="let hub of depot.connectedHubs">
+                <div class="depot-detail-connection-icon depot-detail-connection-hub">🚛</div>
+                <div class="depot-detail-connection-info">
+                    <h3 class="depot-detail-connection-name">{{ hub.name }}</h3>
+                    <p class="depot-detail-connection-location">{{ hub.id }} • {{ hub.location }}</p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="depot-detail-section">
+            <h2 class="depot-detail-section-title">Connected Stores</h2>
+            <div class="depot-detail-connection-grid">
+                <div class="depot-detail-connection-card" *ngFor="let store of depot.connectedStores">
+                <div class="depot-detail-connection-icon depot-detail-connection-store">🏪</div>
+                <div class="depot-detail-connection-info">
+                    <h3 class="depot-detail-connection-name">{{ store.name }}</h3>
+                    <p class="depot-detail-connection-location">
+                    {{ store.id }} • {{ store.location }}
+                    </p>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Shipments Tab -->
+        <div *ngIf="activeTab === 'shipments'" class="depot-detail-shipments">
+            <div class="depot-detail-section">
+            <h2 class="depot-detail-section-title">Recent Shipments</h2>
+            <div class="depot-detail-table-wrapper">
+                <table class="depot-detail-table">
+                <thead>
+                    <tr>
+                    <th>Shipment ID</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Products</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>ETA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let shipment of shipments">
+                    <td class="depot-detail-table-id">{{ shipment.id }}</td>
+                    <td>{{ shipment.from }}</td>
+                    <td>{{ shipment.to }}</td>
+                    <td>{{ shipment.products }}</td>
+                    <td>{{ shipment.date | date : 'shortDate' }}</td>
+                    <td>
+                        <span
+                        [class]="
+                            'depot-detail-shipment-badge ' + getShipmentStatusClass(shipment.status)
+                        "
+                        >
+                        {{ shipment.status }}
+                        </span>
+                    </td>
+                    <td>{{ shipment.eta || '-' }}</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+
+        <!-- Activity Log Tab -->
+        <div *ngIf="activeTab === 'activity'" class="depot-detail-activity">
+            <div class="depot-detail-section">
+            <h2 class="depot-detail-section-title">Recent Activity</h2>
+            <div class="depot-detail-timeline">
+                <div class="depot-detail-timeline-item" *ngFor="let activity of activities">
+                <div [class]="'depot-detail-timeline-icon ' + getActivityClass(activity.type)">
+                    {{ getActivityIcon(activity.type) }}
+                </div>
+                <div class="depot-detail-timeline-content">
+                    <div class="depot-detail-timeline-header">
+                    <h3 class="depot-detail-timeline-title">{{ activity.description }}</h3>
+                    <span class="depot-detail-timeline-time">{{
+                        activity.timestamp | date : 'short'
+                    }}</span>
+                    </div>
+                    <div
+                    class="depot-detail-timeline-details"
+                    *ngIf="activity.quantity || activity.from || activity.to"
+                    >
+                    <span *ngIf="activity.quantity" class="depot-detail-timeline-detail">
+                        Quantity: {{ activity.quantity }}
+                    </span>
+                    <span *ngIf="activity.from" class="depot-detail-timeline-detail">
+                        From: {{ activity.from }}
+                    </span>
+                    <span *ngIf="activity.to" class="depot-detail-timeline-detail">
+                        To: {{ activity.to }}
+                    </span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>

@@ -118,7 +118,7 @@
     margin: 0 auto;
     padding: 0 24px;
     text-align: center;
-    opacity: 0.1;
+    opacity: 0;
     transform: translateY(40px);
     transition: all 1s ease;
 }
