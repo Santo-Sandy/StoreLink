@@ -24,6 +24,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode:RenderMode.Client,
   },
   {
+    path:'depo/:id',
+    renderMode:RenderMode.Client,
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }

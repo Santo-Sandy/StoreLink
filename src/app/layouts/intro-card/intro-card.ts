@@ -26,6 +26,9 @@ export class IntroCard {
     if(this.place.supplier){
       this.route.navigate(['supplier',this.place?.supplier?.name]);
     }
+    if(this.place.depot){
+      this.route.navigate(['depo',this.place?.depot?.id]);
+    }
   }
 
 }

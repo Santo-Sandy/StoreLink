@@ -44,7 +44,7 @@ export const routes: Routes = [
         title:'Supplier',
     },
     {
-        path:'depo',
+        path:'depo/:id',
         component:Depo,
         title:'Depo',
     },

@@ -13,23 +13,16 @@ import { Sessionlogin } from '../../Services/sessionlogin';
   styleUrl: './suppliers.css',
 })
 export class Suppliers {
-
   searchText='';
-
   suppliers;
-
   constructor(private suppliersData:SuppliersData){
     this.suppliers=this.suppliersData.set();
     Sessionlogin.session.set(true);
   }
-
   filteredsuppliers(){
     return this.suppliers.filter(supplier=>
       supplier.supplier.name.toLowerCase().includes(this.searchText.toLowerCase())||
       supplier.supplier.location.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
-
- 
-
 }
