@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
 import { IntroCard } from "../../layouts/intro-card/intro-card";
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 @Component({
   selector: 'app-depos',
@@ -11,6 +12,10 @@ import { IntroCard } from "../../layouts/intro-card/intro-card";
   styleUrl: './depos.css',
 })
 export class Depos {
+
+  constructor(){
+    Sessionlogin.session.set(true);
+  }
 
   searchText='';
 

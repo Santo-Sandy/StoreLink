@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Node, Route, RoutesData, SupplyChainPath } from '../../Services/routes-data';
 import { CommonModule } from '@angular/common';
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 @Component({
   selector: 'app-routes',
@@ -20,7 +21,9 @@ export class Routes {
   viewMode: 'all' | 'by-store' | 'single-path' = 'all';
   ;
 
-  constructor(public supplyChainService: RoutesData) {}
+  constructor(public supplyChainService: RoutesData) {
+    Sessionlogin.session.set(true);
+  }
 
   ngOnInit(): void {
     this.supplyChainService.nodes$.subscribe(nodes => {

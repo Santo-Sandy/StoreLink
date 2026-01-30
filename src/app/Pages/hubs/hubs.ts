@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IntroCard } from "../../layouts/intro-card/intro-card";
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 @Component({
   selector: 'app-hubs',
@@ -11,7 +12,9 @@ import { IntroCard } from "../../layouts/intro-card/intro-card";
 })
 export class Hubs {
 
-  
+  constructor(){
+    Sessionlogin.session.set(true);
+  }
   searchText = '';
 
   hubs = [

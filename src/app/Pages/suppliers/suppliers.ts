@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { IntroCard } from "../../layouts/intro-card/intro-card";
 import { SuppliersData } from '../../Services/suppliers-data';
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 @Component({
   selector: 'app-suppliers',
@@ -19,6 +20,7 @@ export class Suppliers {
 
   constructor(private suppliersData:SuppliersData){
     this.suppliers=this.suppliersData.set();
+    Sessionlogin.session.set(true);
   }
 
   filteredsuppliers(){

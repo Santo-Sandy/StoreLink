@@ -19,14 +19,10 @@ interface FooterSection {
 })
 export class App {
 
-<<<<<<< Updated upstream
   protected readonly title = signal('sample');
   session;
-=======
-  session!:any;
   scrollamount = 150;
 
->>>>>>> Stashed changes
   isMenuOpen = false;
 
 
@@ -69,7 +65,7 @@ export class App {
   ];
 
   constructor(private fb: FormBuilder,private sessionLogin:Sessionlogin,private route:Router) {
-    this.session=this.sessionLogin.session;
+    this.session = Sessionlogin.session;
     this.commentForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

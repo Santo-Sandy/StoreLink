@@ -37,8 +37,8 @@ export class Home {
 
 
   constructor(private sessionLogin:Sessionlogin) {
-  sessionLogin.session.set(false);
-  this.session=sessionLogin.session;
+  Sessionlogin.session.set(false);
+  this.session=Sessionlogin.session;
 
     setTimeout(() => {
       this.heroVisible = true;

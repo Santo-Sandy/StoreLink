@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from "@angular/material/icon";
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,9 @@ export class Dashboard {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private routeProgressService: DashboardData) { }
+  constructor(private routeProgressService: DashboardData) { 
+    Sessionlogin.session.set(true);
+  }
 
   ngOnInit(): void {
     this.loadDashboardData();

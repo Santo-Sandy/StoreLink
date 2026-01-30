@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Setting } from '../../Services/setting';
 import { CommonModule } from '@angular/common';
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 export interface OrganizationProfile {
   id: string;
@@ -81,7 +82,9 @@ export class Settings {
   constructor(
     private fb: FormBuilder,
     private settingsService: Setting
-  ) {}
+  ) {
+    Sessionlogin.session.set(true);
+  }
 
   ngOnInit(): void {
     this.initializeForms();

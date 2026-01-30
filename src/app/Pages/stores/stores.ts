@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IntroCard } from "../../layouts/intro-card/intro-card";
 import { StoreData } from '../../Services/store-data';
+import { Sessionlogin } from '../../Services/sessionlogin';
 
 @Component({
   selector: 'app-stores',
@@ -21,6 +22,7 @@ export class Stores {
 
   constructor(private Stores:StoreData){
     this.stores=this.Stores.sets();
+    Sessionlogin.session.set(true);
 
   }
 
